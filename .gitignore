@@ -1,0 +1,10 @@
+node_modules/
+frontend/node_modules/
+frontend/dist/
+backend/target/
+backend/*.db-shm
+backend/*.db-wal
+.DS_Store
+.env
+*.log
+.codex
