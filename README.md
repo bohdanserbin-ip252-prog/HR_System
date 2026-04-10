@@ -71,7 +71,7 @@ If these are not set, the backend tries sensible runtime-relative defaults such 
 
 ## Docker
 
-Prepare local artifacts and build the container:
+Build the image directly from source:
 
 ```bash
 npm run docker:build
@@ -87,13 +87,41 @@ The image includes:
 
 - the compiled Rust backend
 - the built Vite frontend
-- the seeded SQLite database file
+- runtime defaults for a SQLite database file
 
 Notes:
 
-- the current `Dockerfile` packages locally built artifacts, so it does not depend on npm/crates network access during `docker build`
+- the current `Dockerfile` builds the frontend and backend inside Docker, so it works for source-based deploys such as Fly.io
 - if your Docker environment has restricted bridge networking, use Linux host networking instead:
 
 ```bash
 npm run docker:run:host
 ```
+
+## Fly.io
+
+This project is prepared for a single Fly app where:
+
+- Fly builds the Docker image from the repository source
+- the Rust backend serves the built frontend
+- SQLite lives on a Fly volume mounted at `/data`
+
+Repo defaults for Fly are captured in `fly.toml`:
+
+- app listens on internal port `3000`
+- `HR_SYSTEM_DB_PATH=/data/hr_system.db`
+- `HR_SYSTEM_FRONTEND_DIST=/app/frontend/dist`
+
+Suggested deployment flow:
+
+```bash
+fly auth login
+fly launch --copy-config --no-deploy
+fly deploy
+```
+
+Notes:
+
+- if the checked-in Fly app name is already taken, change the `app` value in `fly.toml` or deploy with `fly deploy -a <your-app-name>`
+- the mounted volume is defined in `fly.toml`, so Fly can create it on first deploy using the configured initial size
+- do not rely on `backend/hr_system.db` for production persistence on Fly; the deployed app should use the volume-backed `/data/hr_system.db`

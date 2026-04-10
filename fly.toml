@@ -1,0 +1,26 @@
+app = "hr-system-bohdanserbin-ip252"
+primary_region = "ams"
+
+[env]
+  PORT = "3000"
+  HR_SYSTEM_DB_PATH = "/data/hr_system.db"
+  HR_SYSTEM_FRONTEND_DIST = "/app/frontend/dist"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[http_service.checks]]
+  grace_period = "10s"
+  interval = "30s"
+  method = "GET"
+  timeout = "5s"
+  path = "/"
+
+[mounts]
+  source = "data"
+  destination = "/data"
+  initial_size = "1gb"

@@ -1,11 +1,10 @@
 node_modules
 frontend/node_modules
+frontend/dist
 backend/target
+backend/*.db
+backend/*.db-shm
+backend/*.db-wal
 .git
 .DS_Store
 *.log
-!frontend/dist
-!frontend/dist/**
-!backend/target/release
-backend/target/release/*
-!backend/target/release/hr_system_backend

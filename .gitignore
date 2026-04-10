@@ -8,3 +8,4 @@ backend/*.db-wal
 .env
 *.log
 .codex
+.fly
