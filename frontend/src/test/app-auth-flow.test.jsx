@@ -182,6 +182,38 @@ describe('App auth flow', () => {
         expect(dataController.resetDataState).toHaveBeenCalled();
     });
 
+    it('does not clear login credentials when hidden authenticated-only panels receive 401 responses', async () => {
+        globalThis.fetch = vi.fn(async url => {
+            if (url.endsWith('/api/v2/auth/me')) {
+                return createJsonResponse(401, { error: 'Unauthorized' });
+            }
+            if (url.endsWith('/api/v2/notifications/unread-count')) {
+                return createJsonResponse(401, { error: 'Необхідно увійти в систему' });
+            }
+            if (url.endsWith('/api/v2/notifications')) {
+                return createJsonResponse(401, { error: 'Необхідно увійти в систему' });
+            }
+            throw new Error(`Unexpected fetch: ${url}`);
+        });
+
+        render(<App />);
+
+        await waitFor(() => {
+            expect(screen.getByLabelText('Логін')).toBeInTheDocument();
+        });
+
+        fireEvent.change(screen.getByLabelText('Логін'), { target: { value: 'admin' } });
+        fireEvent.change(screen.getByLabelText('Пароль'), { target: { value: 'admin123' } });
+
+        await new Promise(resolve => setTimeout(resolve, 50));
+
+        const requestedUrls = globalThis.fetch.mock.calls.map(([url]) => String(url));
+        expect(requestedUrls).not.toContain('/api/v2/notifications');
+        expect(screen.getByLabelText('Логін')).toHaveValue('admin');
+        expect(screen.getByLabelText('Пароль')).toHaveValue('admin123');
+        expect(screen.queryByText('Необхідно увійти в систему')).not.toBeInTheDocument();
+    });
+
     it('bootstraps an authenticated session into the shell', async () => {
         globalThis.fetch = vi.fn(async url => {
             if (url.endsWith('/api/v2/auth/me')) {

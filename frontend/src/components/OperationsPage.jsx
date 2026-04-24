@@ -6,6 +6,7 @@ export default function OperationsPage({ currentUser, isActive }) {
     <HubPage
       title="Operations"
       description="Операційний центр для enterprise-модулів, сервісних потоків і платформених інструментів."
+      isActive={isActive}
       tabs={createOperationTabs({ currentUser, isActive })}
       pageClassName="operations-page"
     />

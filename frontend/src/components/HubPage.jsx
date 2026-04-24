@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 export default function HubPage({
   title,
   description,
+  isActive = true,
   tabs,
   initialTab = null,
   pageClassName = ''
@@ -61,16 +62,17 @@ export default function HubPage({
           .filter(tab => visitedTabs.includes(tab.key))
           .map(tab => {
             const isTabActive = currentTab?.key === tab.key;
+            const isPanelActive = Boolean(isActive && isTabActive);
 
             return (
               <section
                 key={tab.key}
                 aria-labelledby={`hub-tab-${tab.key}`}
-                className={`hub-panel__section${isTabActive ? ' hub-panel__section--active' : ''}`}
+                className={`hub-panel__section${isPanelActive ? ' hub-panel__section--active' : ''}`}
                 hidden={!isTabActive}
                 role="tabpanel"
               >
-                {tab.render?.({ isActive: isTabActive }) || null}
+                {tab.render?.({ isActive: isPanelActive }) || null}
               </section>
             );
           })}

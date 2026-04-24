@@ -11,6 +11,7 @@ export default function OrganizationHubPage({
     <HubPage
       title="Організація"
       description="Єдина структура компанії: підрозділи, посади, оргсхема та модель доступу."
+      isActive={isActive}
       tabs={createOrganizationTabs({
         currentUser,
         isActive,

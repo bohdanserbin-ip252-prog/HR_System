@@ -7,6 +7,7 @@ export default function SystemPage({ currentUser, isActive }) {
     <HubPage
       title="System"
       description="Системні налаштування облікового запису та керування feature flags."
+      isActive={isActive}
       tabs={[
         { key: 'settings', label: 'Settings', icon: 'settings', render: () => <SettingsPage currentUser={currentUser} /> },
         {

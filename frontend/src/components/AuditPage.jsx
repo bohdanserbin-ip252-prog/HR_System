@@ -7,6 +7,7 @@ export default function AuditPage({ currentUser, isActive }) {
     <HubPage
       title="Аудит"
       description="Єдиний адміністративний модуль для журналу подій і аналітики контролю."
+      isActive={isActive}
       tabs={[
         {
           key: 'log',

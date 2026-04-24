@@ -7,6 +7,7 @@ export default function ActivityPage({ currentUser, isActive, snapshot }) {
     <HubPage
       title="Активність"
       description="Єдина точка для персональних сповіщень та загальної стрічки подій."
+      isActive={isActive}
       tabs={[
         {
           key: 'inbox',
