@@ -5,8 +5,13 @@ use hr_system_backend::{
 use tokio::net::TcpListener;
 use tracing_subscriber::{EnvFilter, layer::SubscriberExt, util::SubscriberInitExt};
 
+#[path = "sentry_init.rs"]
+mod sentry_init;
+
 #[tokio::main]
 async fn main() -> Result<()> {
+    let _sentry = sentry_init::init_sentry();
+
     tracing_subscriber::registry()
         .with(
             EnvFilter::try_from_default_env()

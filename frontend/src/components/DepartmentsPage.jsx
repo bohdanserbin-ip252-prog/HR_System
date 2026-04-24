@@ -1,12 +1,13 @@
 import { useAppActions } from '../appContext.jsx';
-import OrganizationPage from './OrganizationPage.jsx';
+import { ENDPOINTS } from '../app/endpoints.js';
+import OrganizationEntityTabShell from './OrganizationEntityTabShell.jsx';
 
 export default function DepartmentsPage({ currentUser, isActive, refreshKey = 0 }) {
     const { confirmDelete, editDepartment, openDepartmentCreate } = useAppActions();
 
     return (
-        <OrganizationPage
-            endpoint="/api/departments"
+        <OrganizationEntityTabShell
+            endpoint={ENDPOINTS.departments}
             title="Відділи підприємства"
             description="Організаційна структура та розподіл персоналу."
             addButtonLabel="Додати відділ"

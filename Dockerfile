@@ -20,6 +20,7 @@ WORKDIR /app
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends ca-certificates \
+    && mkdir -p /data \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=backend-builder /app/backend/target/release/hr_system_backend /usr/local/bin/hr_system_backend

@@ -84,6 +84,46 @@ describe('useAppActionsController', () => {
             mode: 'create',
             employeeId: null
         });
+
+        act(() => {
+            result.current.closeEmployeeModal();
+            deps.currentPageRef.current = 'complaints';
+            result.current.handleFab();
+        });
+
+        expect(result.current.complaintModalState).toEqual({
+            isOpen: true,
+            mode: 'create',
+            complaintId: null
+        });
+    });
+
+    it('allows regular users to open complaint creation but not moderation actions', () => {
+        const deps = createControllerDeps();
+        deps.currentUserRef.current = { id: 2, username: 'viewer', role: 'user' };
+
+        const { result } = renderHook(() => useAppActionsController(deps));
+
+        act(() => {
+            result.current.openComplaintCreate();
+        });
+
+        expect(result.current.complaintModalState).toEqual({
+            isOpen: true,
+            mode: 'create',
+            complaintId: null
+        });
+
+        act(() => {
+            result.current.editComplaint(5);
+        });
+
+        expect(result.current.complaintModalState).toEqual({
+            isOpen: true,
+            mode: 'create',
+            complaintId: null
+        });
+        expect(mockShowToast).toHaveBeenCalledWith('Ця дія доступна лише адміністратору', 'error');
     });
 
     it('deletes an employee from profile flow and redirects back to employees', async () => {
@@ -107,7 +147,7 @@ describe('useAppActionsController', () => {
             await result.current.confirmDeleteState.onConfirm();
         });
 
-        expect(mockFetchRuntimeJSON).toHaveBeenCalledWith('/api/employees/9', {
+        expect(mockFetchRuntimeJSON).toHaveBeenCalledWith('/api/v2/employees/9', {
             method: 'DELETE',
             onUnauthorized: deps.onUnauthorized
         });
@@ -131,7 +171,7 @@ describe('useAppActionsController', () => {
             await result.current.moveRecord('developmentGoal', 3, 'down');
         });
 
-        expect(mockFetchRuntimeJSON).toHaveBeenCalledWith('/api/development/goals/3/move', {
+        expect(mockFetchRuntimeJSON).toHaveBeenCalledWith('/api/v2/development/goals/3/move', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ direction: 'down' }),
@@ -139,6 +179,28 @@ describe('useAppActionsController', () => {
         });
         expect(mockInvalidateRuntimeCache).toHaveBeenCalledWith('development');
         expect(deps.refreshAll).toHaveBeenCalledWith('move-developmentGoal');
+    });
+
+    it('deletes complaints through the complaints endpoint and refreshes complaint data', async () => {
+        const deps = createControllerDeps();
+        mockFetchRuntimeJSON.mockResolvedValueOnce({ success: true });
+
+        const { result } = renderHook(() => useAppActionsController(deps));
+
+        act(() => {
+            result.current.confirmDelete('complaint', 17, 'Скарга');
+        });
+
+        await act(async () => {
+            await result.current.confirmDeleteState.onConfirm();
+        });
+
+        expect(mockFetchRuntimeJSON).toHaveBeenCalledWith('/api/v2/complaints/17', {
+            method: 'DELETE',
+            onUnauthorized: deps.onUnauthorized
+        });
+        expect(mockInvalidateRuntimeCache).toHaveBeenCalledWith('complaints');
+        expect(deps.refreshAll).toHaveBeenCalledWith('delete-complaint');
     });
 
     it('runs department mutation follow-up with cache invalidation and refreshes', async () => {

@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { API, fetchJSON } from '../api.js';
+import { fetchJSON } from '../api.js';
+import { ENDPOINTS } from '../app/endpoints.js';
 import { useAppActions } from '../appContext.jsx';
-import { isAbortedLoad, useAbortableLoadEffect } from '../hooks/useAbortableLoadEffect.js';
+import { parseFiniteNumberInput } from '../developmentOnboardingFormUtils.js';
 import { useAsyncStatus } from '../hooks/useAsyncStatus.js';
-import ModalFrame from './ModalFrame.jsx';
-import FormErrorMessage from './FormErrorMessage.jsx';
+import EntityModalFrame from './modalEngine/EntityModalFrame.jsx';
+import { submitEntityMutation } from './modalEngine/submitEntityMutation.js';
+import useRemoteEntityModalForm from './modalEngine/useRemoteEntityModalForm.js';
 
 const EMPTY_FORM = {
     title: '',
@@ -21,6 +23,51 @@ function mapPositionToForm(position) {
         description: position?.description || ''
     };
 }
+
+const FIELD_SECTIONS = [
+    {
+        fields: [
+            {
+                id: 'posTitle',
+                name: 'title',
+                label: 'Назва посади',
+                required: true,
+                type: 'text',
+                placeholder: 'Senior Developer'
+            }
+        ]
+    },
+    {
+        row: true,
+        fields: [
+            {
+                id: 'posMinSalary',
+                name: 'minSalary',
+                label: 'Мін. зарплата (₴)',
+                type: 'number',
+                placeholder: '20000'
+            },
+            {
+                id: 'posMaxSalary',
+                name: 'maxSalary',
+                label: 'Макс. зарплата (₴)',
+                type: 'number',
+                placeholder: '50000'
+            }
+        ]
+    },
+    {
+        fields: [
+            {
+                id: 'posDesc',
+                name: 'description',
+                label: 'Опис',
+                type: 'text',
+                placeholder: 'Опис посади'
+            }
+        ]
+    }
+];
 
 export default function PositionModal({
     isOpen,
@@ -44,57 +91,32 @@ export default function PositionModal({
 
     const isAdmin = currentUser?.role === 'admin';
 
-    useAbortableLoadEffect({
-        enabled: Boolean(isOpen && isAdmin && mode === 'edit' && positionId),
-        deps: [isAdmin, isOpen, mode, onClose, positionId, handleUnauthorized],
-        onDisabled: () => {
-            if (!isOpen) {
-                setForm(EMPTY_FORM);
-                setIsSaving(false);
-                resetAsyncStatus();
-                return;
-            }
-
-            if (!isAdmin) {
-                onClose();
-                return;
-            }
-
-            if (mode !== 'edit' || !positionId) {
-                setForm(EMPTY_FORM);
-                resetAsyncStatus();
-            }
-        },
-        load: async ({ signal }) => {
-            startLoading();
-
-            try {
-                const position = await fetchJSON(`${API}/api/positions/${positionId}`, {
-                    signal
-                });
-                if (!signal.aborted) {
-                    setForm(mapPositionToForm(position));
-                }
-            } catch (error) {
-                if (isAbortedLoad(error, signal)) return;
-                if (error?.status === 401) {
-                    onClose();
-                    handleUnauthorized(error.message || 'Сесію завершено. Увійдіть повторно.');
-                    return;
-                }
-                failWithError(error, 'Помилка завантаження посади');
-            } finally {
-                if (!signal.aborted) finishLoading();
-            }
-        }
+    useRemoteEntityModalForm({
+        deps: [],
+        emptyForm: EMPTY_FORM,
+        entityId: positionId,
+        errorMessageOnLoad: 'Помилка завантаження посади',
+        failWithError,
+        finishLoading,
+        handleUnauthorized,
+        isAdmin,
+        isOpen,
+        loadEntity: ({ entityId, signal }) => fetchJSON(ENDPOINTS.positionById(entityId), { signal }),
+        mapEntityToForm: mapPositionToForm,
+        mode,
+        onClose,
+        resetAsyncStatus,
+        setForm,
+        setIsSaving,
+        startLoading
     });
 
     async function handleSubmit(event) {
         event.preventDefault();
         if (!isAdmin || isLoading || isSaving) return;
 
-        const minSalary = Number.parseFloat(form.minSalary || '0') || 0;
-        const maxSalary = Number.parseFloat(form.maxSalary || '0') || 0;
+        const minSalary = parseFiniteNumberInput(form.minSalary, { emptyValue: 0 });
+        const maxSalary = parseFiniteNumberInput(form.maxSalary, { emptyValue: 0 });
         const payload = {
             title: form.title.trim(),
             min_salary: minSalary,
@@ -106,6 +128,10 @@ export default function PositionModal({
             setErrorMessage('Назва обов’язкова');
             return;
         }
+        if (payload.min_salary === null || payload.max_salary === null) {
+            setErrorMessage('Зарплатні межі мають бути числами');
+            return;
+        }
         if (payload.min_salary < 0 || payload.max_salary < 0) {
             setErrorMessage('Зарплатні межі не можуть бути від’ємними');
             return;
@@ -115,35 +141,24 @@ export default function PositionModal({
             return;
         }
 
-        setIsSaving(true);
-        setErrorMessage('');
-
-        try {
-            const url = positionId ? `${API}/api/positions/${positionId}` : `${API}/api/positions`;
-            const method = positionId ? 'PUT' : 'POST';
-
-            await fetchJSON(url, {
-                method,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-
-            onClose();
-            await afterPositionMutation({
+        await submitEntityMutation({
+            afterMutation: async ({ successMessage }) => afterPositionMutation({
                 reason: positionId ? 'position-updated' : 'position-created',
-                successMessage: positionId ? 'Посаду оновлено' : 'Посаду створено'
-            }).catch(() => {});
-            return;
-        } catch (error) {
-            if (error?.status === 401) {
-                onClose();
-                handleUnauthorized(error.message || 'Сесію завершено. Увійдіть повторно.');
-                return;
-            }
-            failWithError(error, 'Помилка збереження');
-        } finally {
-            setIsSaving(false);
-        }
+                successMessage
+            }),
+            createEndpoint: ENDPOINTS.positions,
+            entityId: positionId,
+            errorMessageFallback: 'Помилка збереження',
+            failWithError,
+            handleUnauthorized,
+            onClose,
+            payload,
+            setErrorMessage,
+            setIsSaving,
+            successMessageCreate: 'Посаду створено',
+            successMessageUpdate: 'Посаду оновлено',
+            updateEndpoint: ENDPOINTS.positionById
+        });
     }
 
     const title = isLoading
@@ -153,79 +168,21 @@ export default function PositionModal({
             : 'Додати посаду';
 
     return (
-        <ModalFrame
+        <EntityModalFrame
             modalId="posModal"
             title={title}
-            width="480px"
+            size="compact"
             isOpen={isOpen}
-            onClose={() => {
-                if (isSaving) return;
-                onClose();
-            }}
-            footer={(
-                <>
-                    <button className="btn btn-secondary" onClick={onClose} type="button" disabled={isSaving}>
-                        Скасувати
-                    </button>
-                    <button className="btn btn-primary" type="submit" form="positionModalForm" disabled={isLoading || isSaving}>
-                        {isSaving ? 'Збереження...' : 'Зберегти'}
-                    </button>
-                </>
-            )}
-        >
-            <form id="positionModalForm" onSubmit={handleSubmit}>
-                <FormErrorMessage message={errorMessage} style={{ display: 'block', marginBottom: '16px' }} />
-                <div className="form-group">
-                    <label htmlFor="posTitle">Назва посади *</label>
-                    <input
-                        id="posTitle"
-                        type="text"
-                        className="form-input"
-                        placeholder="Senior Developer"
-                        value={form.title}
-                        onChange={event => setForm(current => ({ ...current, title: event.target.value }))}
-                        disabled={isLoading || isSaving}
-                    />
-                </div>
-                <div className="form-row">
-                    <div className="form-group">
-                        <label htmlFor="posMinSalary">Мін. зарплата (₴)</label>
-                        <input
-                            id="posMinSalary"
-                            type="number"
-                            className="form-input"
-                            placeholder="20000"
-                            value={form.minSalary}
-                            onChange={event => setForm(current => ({ ...current, minSalary: event.target.value }))}
-                            disabled={isLoading || isSaving}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="posMaxSalary">Макс. зарплата (₴)</label>
-                        <input
-                            id="posMaxSalary"
-                            type="number"
-                            className="form-input"
-                            placeholder="50000"
-                            value={form.maxSalary}
-                            onChange={event => setForm(current => ({ ...current, maxSalary: event.target.value }))}
-                            disabled={isLoading || isSaving}
-                        />
-                    </div>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="posDesc">Опис</label>
-                    <input
-                        id="posDesc"
-                        type="text"
-                        className="form-input"
-                        placeholder="Опис посади"
-                        value={form.description}
-                        onChange={event => setForm(current => ({ ...current, description: event.target.value }))}
-                        disabled={isLoading || isSaving}
-                    />
-                </div>
-            </form>
-        </ModalFrame>
+            onClose={onClose}
+            isSaving={isSaving}
+            isLoading={isLoading}
+            errorMessage={errorMessage}
+            formId="positionModalForm"
+            onSubmit={handleSubmit}
+            sections={FIELD_SECTIONS}
+            form={form}
+            setForm={setForm}
+            fieldsDisabled={isLoading || isSaving}
+        />
     );
 }

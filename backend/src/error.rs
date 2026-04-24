@@ -14,6 +14,8 @@ pub enum AppError {
     Unauthorized(String),
     Forbidden(String),
     NotFound(String),
+    MethodNotAllowed(String),
+    UnsupportedMediaType(String),
     Internal(String),
 }
 
@@ -39,8 +41,18 @@ impl AppError {
         Self::NotFound(message.into())
     }
 
+    pub fn method_not_allowed(message: impl Into<String>) -> Self {
+        Self::MethodNotAllowed(message.into())
+    }
+
+    pub fn unsupported_media_type(message: impl Into<String>) -> Self {
+        Self::UnsupportedMediaType(message.into())
+    }
+
     pub fn internal(message: impl Into<String>) -> Self {
-        Self::Internal(message.into())
+        let message = message.into();
+        sentry::capture_message(&message, sentry::Level::Error);
+        Self::Internal(message)
     }
 }
 
@@ -51,6 +63,8 @@ impl Display for AppError {
             | Self::Unauthorized(message)
             | Self::Forbidden(message)
             | Self::NotFound(message)
+            | Self::MethodNotAllowed(message)
+            | Self::UnsupportedMediaType(message)
             | Self::Internal(message) => f.write_str(message),
         }
     }
@@ -65,7 +79,15 @@ impl IntoResponse for AppError {
             Self::Unauthorized(message) => (StatusCode::UNAUTHORIZED, message),
             Self::Forbidden(message) => (StatusCode::FORBIDDEN, message),
             Self::NotFound(message) => (StatusCode::NOT_FOUND, message),
-            Self::Internal(message) => (StatusCode::INTERNAL_SERVER_ERROR, message),
+            Self::MethodNotAllowed(message) => (StatusCode::METHOD_NOT_ALLOWED, message),
+            Self::UnsupportedMediaType(message) => (StatusCode::UNSUPPORTED_MEDIA_TYPE, message),
+            Self::Internal(message) => {
+                tracing::error!(error = %message, "internal server error");
+                (
+                    StatusCode::INTERNAL_SERVER_ERROR,
+                    "Внутрішня помилка сервера".to_string(),
+                )
+            }
         };
 
         (status, Json(ErrorResponse { error: message })).into_response()
@@ -138,11 +160,31 @@ mod tests {
     }
 
     #[tokio::test]
-    async fn internal_maps_to_500_json_response() {
+    async fn method_not_allowed_maps_to_405_json_response() {
         assert_error_response(
-            AppError::internal("Внутрішня помилка"),
+            AppError::method_not_allowed("Метод не дозволено"),
+            StatusCode::METHOD_NOT_ALLOWED,
+            "Метод не дозволено",
+        )
+        .await;
+    }
+
+    #[tokio::test]
+    async fn unsupported_media_type_maps_to_415_json_response() {
+        assert_error_response(
+            AppError::unsupported_media_type("Очікується JSON"),
+            StatusCode::UNSUPPORTED_MEDIA_TYPE,
+            "Очікується JSON",
+        )
+        .await;
+    }
+
+    #[tokio::test]
+    async fn internal_maps_to_sanitized_500_json_response() {
+        assert_error_response(
+            AppError::internal("raw database details"),
             StatusCode::INTERNAL_SERVER_ERROR,
-            "Внутрішня помилка",
+            "Внутрішня помилка сервера",
         )
         .await;
     }

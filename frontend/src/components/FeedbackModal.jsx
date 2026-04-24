@@ -1,14 +1,17 @@
 import { useState } from 'react';
-import { API, fetchJSON } from '../api.js';
+import { ENDPOINTS } from '../app/endpoints.js';
 import { useAppActions } from '../appContext.jsx';
 import { isAbortedLoad, useAbortableLoadEffect } from '../hooks/useAbortableLoadEffect.js';
 import { useAsyncStatus } from '../hooks/useAsyncStatus.js';
 import {
     getTodayInputValue,
-    nextDisplayOrder
+    nextDisplayOrder,
+    parseIntegerInput,
+    parseNonNegativeIntegerInput
 } from '../developmentOnboardingFormUtils.js';
-import ModalFrame from './ModalFrame.jsx';
-import FormErrorMessage from './FormErrorMessage.jsx';
+import EntityModalFrame from './modalEngine/EntityModalFrame.jsx';
+import { fetchEmployeesForSelect } from './modalEngine/fetchEmployeesForSelect.js';
+import { submitEntityMutation } from './modalEngine/submitEntityMutation.js';
 
 function createEmptyForm(feedback = []) {
     return {
@@ -26,6 +29,55 @@ function mapFeedbackToForm(feedback) {
         text: feedback?.text || '',
         displayOrder: String(feedback?.displayOrder ?? 0)
     };
+}
+
+function buildSections(employeeOptions) {
+    return [
+        {
+            row: true,
+            fields: [
+                {
+                    id: 'feedbackEmployeeId',
+                    name: 'employeeId',
+                    label: 'Автор',
+                    type: 'select',
+                    options: employeeOptions
+                },
+                {
+                    id: 'feedbackDate',
+                    name: 'feedbackAt',
+                    label: 'Дата',
+                    required: true,
+                    type: 'date'
+                }
+            ]
+        },
+        {
+            fields: [
+                {
+                    id: 'feedbackText',
+                    name: 'text',
+                    label: 'Текст відгуку',
+                    required: true,
+                    type: 'textarea',
+                    rows: 4,
+                    placeholder: "Текст зворотного зв'язку"
+                }
+            ]
+        },
+        {
+            fields: [
+                {
+                    id: 'feedbackDisplayOrder',
+                    name: 'displayOrder',
+                    label: 'Порядок відображення',
+                    type: 'number',
+                    min: '0',
+                    placeholder: '1'
+                }
+            ]
+        }
+    ];
 }
 
 export default function FeedbackModal({ isOpen, mode, feedbackId, currentUser, feedback = [], onClose }) {
@@ -65,17 +117,15 @@ export default function FeedbackModal({ isOpen, mode, feedbackId, currentUser, f
             startLoading();
 
             try {
-                const items = await fetchJSON(`${API}/api/employees?sort_by=last_name&sort_dir=asc`, {
+                const items = await fetchEmployeesForSelect({
                     signal
                 });
                 if (signal.aborted) return;
 
-                const nextEmployees = Array.isArray(items)
-                    ? items.map(employee => ({
-                        ...employee,
-                        full_name: `${employee.last_name} ${employee.first_name}`
-                    }))
-                    : [];
+                const nextEmployees = items.map(employee => ({
+                    ...employee,
+                    full_name: `${employee.last_name} ${employee.first_name}`
+                }));
                 setEmployees(nextEmployees);
 
                 if (mode === 'edit' && feedbackId) {
@@ -104,11 +154,13 @@ export default function FeedbackModal({ isOpen, mode, feedbackId, currentUser, f
         event.preventDefault();
         if (!isAdmin || isLoading || isSaving) return;
 
+        const employeeId = parseIntegerInput(form.employeeId);
+        const displayOrder = parseNonNegativeIntegerInput(form.displayOrder, { emptyValue: undefined });
         const payload = {
-            employee_id: form.employeeId || null,
+            employee_id: employeeId,
             feedback_at: form.feedbackAt,
             text: form.text.trim(),
-            display_order: Number(form.displayOrder) || 0
+            display_order: displayOrder
         };
 
         if (!payload.feedback_at || !payload.text) {
@@ -116,114 +168,57 @@ export default function FeedbackModal({ isOpen, mode, feedbackId, currentUser, f
             return;
         }
 
-        setIsSaving(true);
-        setErrorMessage('');
-
-        try {
-            const url = feedbackId ? `${API}/api/development/feedback/${feedbackId}` : `${API}/api/development/feedback`;
-            const method = feedbackId ? 'PUT' : 'POST';
-
-            await fetchJSON(url, {
-                method,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-
-            onClose();
-            await afterDevelopmentOnboardingMutation({
-                successMessage: feedbackId ? 'Відгук оновлено' : 'Відгук створено'
-            }).catch(() => {});
-        } catch (error) {
-            if (error?.status === 401) {
-                onClose();
-                handleUnauthorized(error.message || 'Сесію завершено. Увійдіть повторно.');
-                return;
-            }
-            failWithError(error, 'Помилка збереження відгуку');
-        } finally {
-            setIsSaving(false);
+        if (payload.employee_id === null && form.employeeId) {
+            setErrorMessage('Працівник має бути обраний зі списку');
+            return;
         }
+
+        if (payload.display_order === null) {
+            setErrorMessage('Порядок відображення має бути цілим числом');
+            return;
+        }
+
+        await submitEntityMutation({
+            afterMutation: afterDevelopmentOnboardingMutation,
+            createEndpoint: ENDPOINTS.developmentFeedback,
+            entityId: feedbackId,
+            errorMessageFallback: 'Помилка збереження відгуку',
+            failWithError,
+            handleUnauthorized,
+            onClose,
+            payload,
+            setErrorMessage,
+            setIsSaving,
+            successMessageCreate: 'Відгук створено',
+            successMessageUpdate: 'Відгук оновлено',
+            updateEndpoint: ENDPOINTS.developmentFeedbackById
+        });
     }
 
+    const employeeOptions = [
+        { value: '', label: '— Автор не вказаний —' },
+        ...employees.map(employee => ({
+            value: employee.id,
+            label: employee.full_name
+        }))
+    ];
+
     return (
-        <ModalFrame
+        <EntityModalFrame
             modalId="feedbackModal"
             title={feedbackId ? 'Редагувати відгук' : 'Додати відгук'}
-            width="560px"
+            size="standard"
             isOpen={isOpen}
-            onClose={() => {
-                if (isSaving) return;
-                onClose();
-            }}
-            footer={(
-                <>
-                    <button className="btn btn-secondary" onClick={onClose} type="button" disabled={isSaving}>
-                        Скасувати
-                    </button>
-                    <button className="btn btn-primary" type="submit" form="feedbackModalForm" disabled={isLoading || isSaving}>
-                        {isSaving ? 'Збереження...' : 'Зберегти'}
-                    </button>
-                </>
-            )}
-        >
-            <form id="feedbackModalForm" onSubmit={handleSubmit}>
-                <FormErrorMessage message={errorMessage} style={{ display: 'block', marginBottom: '16px' }} />
-                <div className="form-row">
-                    <div className="form-group">
-                        <label htmlFor="feedbackEmployeeId">Автор</label>
-                        <select
-                            id="feedbackEmployeeId"
-                            className="form-input"
-                            value={form.employeeId}
-                            onChange={event => setForm(current => ({ ...current, employeeId: event.target.value }))}
-                            disabled={isLoading || isSaving}
-                        >
-                            <option value="">— Автор не вказаний —</option>
-                            {employees.map(employee => (
-                                <option key={employee.id} value={employee.id}>
-                                    {employee.full_name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="feedbackDate">Дата *</label>
-                        <input
-                            id="feedbackDate"
-                            type="date"
-                            className="form-input"
-                            value={form.feedbackAt}
-                            onChange={event => setForm(current => ({ ...current, feedbackAt: event.target.value }))}
-                            disabled={isLoading || isSaving}
-                        />
-                    </div>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="feedbackText">Текст відгуку *</label>
-                    <textarea
-                        id="feedbackText"
-                        className="form-input"
-                        rows="4"
-                        placeholder="Текст зворотного зв'язку"
-                        value={form.text}
-                        onChange={event => setForm(current => ({ ...current, text: event.target.value }))}
-                        disabled={isLoading || isSaving}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="feedbackDisplayOrder">Порядок відображення</label>
-                    <input
-                        id="feedbackDisplayOrder"
-                        type="number"
-                        min="0"
-                        className="form-input"
-                        placeholder="1"
-                        value={form.displayOrder}
-                        onChange={event => setForm(current => ({ ...current, displayOrder: event.target.value }))}
-                        disabled={isLoading || isSaving}
-                    />
-                </div>
-            </form>
-        </ModalFrame>
+            onClose={onClose}
+            isSaving={isSaving}
+            isLoading={isLoading}
+            errorMessage={errorMessage}
+            formId="feedbackModalForm"
+            onSubmit={handleSubmit}
+            sections={buildSections(employeeOptions)}
+            form={form}
+            setForm={setForm}
+            fieldsDisabled={isLoading || isSaving}
+        />
     );
 }

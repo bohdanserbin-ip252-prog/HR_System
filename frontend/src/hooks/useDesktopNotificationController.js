@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { loadDevelopmentSnapshot, loadOnboardingSnapshot } from '../appRuntime.js';
 import {
+    MAX_REMINDERS_PER_CHECK,
     REMINDER_POLL_INTERVAL_MS,
     buildDesktopReminderPayloads,
     ensureDesktopNotificationPermission,
@@ -8,6 +9,7 @@ import {
     getToastTypeForReminder,
     getUnseenReminderNotifications,
     rememberReminderNotification,
+    storeReminderInboxNotification,
     shouldUseDesktopNotifications,
     showDesktopNotification,
 } from '../desktopNotifications.js';
@@ -18,6 +20,12 @@ function formatToastMessage(reminder) {
 }
 
 export function useDesktopNotificationController({ authStatus, currentUser, desktopNotificationsEnabled, onUnauthorized }) {
+    const onUnauthorizedRef = useRef(onUnauthorized);
+
+    useEffect(() => {
+        onUnauthorizedRef.current = onUnauthorized;
+    }, [onUnauthorized]);
+
     useEffect(() => {
         if (authStatus !== 'authenticated' || !currentUser || !desktopNotificationsEnabled) return;
         void ensureDesktopNotificationPermission();
@@ -30,18 +38,21 @@ export function useDesktopNotificationController({ authStatus, currentUser, desk
 
         async function runReminderCheck() {
             try {
+                const handleUnauthorized = message => onUnauthorizedRef.current?.(message);
                 const [development, onboarding] = await Promise.all([
-                    loadDevelopmentSnapshot({ forceRefresh: true, onUnauthorized }),
-                    loadOnboardingSnapshot({ forceRefresh: true, onUnauthorized }),
+                    loadDevelopmentSnapshot({ forceRefresh: true, onUnauthorized: handleUnauthorized }),
+                    loadOnboardingSnapshot({ forceRefresh: true, onUnauthorized: handleUnauthorized }),
                 ]);
 
                 if (disposed) return;
 
                 const pendingReminders = getUnseenReminderNotifications(
                     buildDesktopReminderPayloads({ development, onboarding }),
-                );
+                ).slice(0, MAX_REMINDERS_PER_CHECK);
 
                 pendingReminders.forEach(reminder => {
+                    storeReminderInboxNotification(reminder);
+
                     const isPageHidden = shouldUseDesktopNotifications();
                     const canUseDesktop =
                         desktopNotificationsEnabled &&
@@ -81,5 +92,5 @@ export function useDesktopNotificationController({ authStatus, currentUser, desk
             document.removeEventListener('visibilitychange', handleVisibilityChange);
             window.clearInterval(intervalId);
         };
-    }, [authStatus, currentUser?.id, desktopNotificationsEnabled, onUnauthorized]);
+    }, [authStatus, currentUser?.id, desktopNotificationsEnabled]);
 }

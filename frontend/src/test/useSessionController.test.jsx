@@ -39,7 +39,7 @@ describe('useSessionController', () => {
             expect(result.current.authStatus).toBe('authenticated');
         });
 
-        expect(mockFetchJSON).toHaveBeenCalledWith('/api/auth/me', { suppressAuthRedirect: true });
+        expect(mockFetchJSON).toHaveBeenCalledWith('/api/v2/auth/me', { suppressAuthRedirect: true });
         expect(deps.currentUserRef.current).toEqual(user);
         expect(deps.currentPageRef.current).toBe('dashboard');
         expect(result.current.currentUser).toEqual(user);
@@ -100,7 +100,7 @@ describe('useSessionController', () => {
         expect(preventDefault).toHaveBeenCalledTimes(1);
         expect(mockFetchJSON).toHaveBeenNthCalledWith(
             2,
-            '/api/auth/login',
+            '/api/v2/auth/login',
             expect.objectContaining({
                 method: 'POST',
                 suppressAuthRedirect: true,
@@ -137,7 +137,7 @@ describe('useSessionController', () => {
             expect(result.current.authStatus).toBe('unauthenticated');
         });
 
-        expect(mockFetchJSON).toHaveBeenNthCalledWith(2, '/api/auth/logout', {
+        expect(mockFetchJSON).toHaveBeenNthCalledWith(2, '/api/v2/auth/logout', {
             method: 'POST',
             suppressAuthRedirect: true
         });

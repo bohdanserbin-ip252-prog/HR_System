@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/data
+    env_file:
+      - .env
+    environment:
+      - PORT=3000
+      - HR_SYSTEM_DB_PATH=/data/hr_system.db
+      - HR_SYSTEM_FRONTEND_DIST=/app/frontend/dist
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  # Optional frontend dev server with hot reload
+  # Uncomment below if you want docker-compose to manage the dev frontend too.
+  # frontend-dev:
+  #   image: node:20-bookworm-slim
+  #   working_dir: /app
+  #   volumes:
+  #     - .:/app
+  #   ports:
+  #     - "5173:5173"
+  #   env_file:
+  #     - .env
+  #   command: ["npm", "run", "dev", "--workspace", "frontend", "--", "--host"]
+  #   depends_on:
+  #     - backend
+  #   restart: unless-stopped

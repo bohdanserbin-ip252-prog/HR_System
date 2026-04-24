@@ -1,0 +1,232 @@
+@layer components {
+    .main-content {
+        @apply min-h-screen px-10 pb-12 pl-10 pt-[calc(var(--header-height)+32px)];
+        margin-left: var(--sidebar-width);
+    }
+
+    .page-header {
+        @apply mb-10;
+    }
+
+    .page-header h1 {
+        @apply mb-2 font-headline text-[44px] font-extrabold leading-[1.1] tracking-[-1px] text-on-surface;
+    }
+
+    .page-header p {
+        @apply text-lg text-on-surface-variant;
+    }
+
+    .page-actions {
+        @apply mb-6 flex flex-wrap items-center justify-between gap-3;
+    }
+
+    .page-content {
+        @apply flex min-w-0 flex-col gap-6;
+    }
+
+    .dashboard-content {
+        @apply gap-8;
+    }
+
+    .page-section {
+        @apply hidden;
+    }
+
+    .page-section.active {
+        @apply block;
+        animation: motion-enter-up var(--motion-duration-slow) var(--motion-ease-enter);
+    }
+
+    .dashboard-grid {
+        @apply grid items-start gap-10;
+        grid-template-columns: 7fr 5fr;
+    }
+
+    .dashboard-left,
+    .dashboard-right {
+        @apply flex flex-col gap-6;
+    }
+
+    .card {
+        @apply overflow-hidden rounded-2xl border border-[rgba(192,196,195,0.1)] shadow-sm;
+        background-color: var(--card);
+    }
+
+    :root.dark .card {
+        border-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .card-padded {
+        @apply p-8;
+    }
+
+    .hero-stat-card .card-top {
+        @apply mb-8 flex items-center justify-between;
+    }
+
+    .hero-stat-card .card-top .label {
+        @apply mb-0.5 text-xs font-bold uppercase tracking-[2px] text-on-surface-variant;
+    }
+
+    .hero-stat-card .card-top .sublabel {
+        @apply text-[11px] font-medium text-on-surface-variant opacity-60;
+    }
+
+    .badge-stable {
+        @apply rounded-[20px] bg-emerald-100 px-3 py-1 text-[11px] font-black tracking-[0.5px] text-emerald-800;
+    }
+
+    .hero-stat-value {
+        @apply mb-8 flex items-baseline gap-4;
+    }
+
+    .hero-stat-value .big-num {
+        @apply font-headline text-[96px] font-extrabold leading-none text-emerald-700;
+    }
+
+    .hero-stat-value .context .trend {
+        @apply mb-1 flex items-center gap-1 text-sm font-bold text-emerald-600;
+    }
+
+    .hero-stat-value .context .benchmark {
+        @apply text-[13px] text-on-surface-variant;
+    }
+
+    .hero-stat-metrics {
+        @apply grid grid-cols-3 gap-6 border-t border-t-[rgba(192,196,195,0.1)] pt-8;
+    }
+
+    .hero-stat-metrics .metric .metric-label {
+        @apply mb-1.5 text-[10px] font-bold uppercase tracking-[0.5px] text-on-surface-variant;
+    }
+
+    .hero-stat-metrics .metric .metric-value {
+        @apply font-headline text-[28px] font-extrabold text-on-surface;
+    }
+
+    .mini-stats-row {
+        @apply grid grid-cols-2 gap-5;
+    }
+
+    .dashboard-kpi-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .mini-stat-card {
+        @apply p-6;
+    }
+
+    .mini-stat-card .mini-label {
+        @apply mb-1 text-[10px] font-bold uppercase tracking-[0.5px] text-on-surface-variant;
+    }
+
+    .mini-stat-card .mini-row {
+        @apply mb-3 flex items-baseline justify-between;
+    }
+
+    .mini-stat-card .mini-row .mini-value {
+        @apply font-headline text-5xl font-extrabold text-on-surface;
+    }
+
+    .mini-stat-card .mini-row .mini-tag {
+        @apply text-xs font-bold text-emerald-600;
+    }
+
+    .progress-track {
+        @apply h-2 w-full overflow-hidden rounded bg-slate-100;
+    }
+
+    .progress-fill {
+        @apply h-full rounded bg-emerald-600;
+        transition: width var(--motion-duration-progress) var(--motion-ease-standard);
+    }
+
+    .insight-card {
+        @apply relative overflow-hidden rounded-2xl bg-emerald-900 p-8 text-on-primary shadow-xl;
+    }
+
+    .insight-card h3 {
+        @apply relative z-[2] mb-4 font-headline text-xl font-bold;
+    }
+
+    .insight-card p {
+        @apply relative z-[2] text-[17px] italic leading-[1.6] text-[rgba(236,253,245,0.8)];
+    }
+
+    .insight-card .bg-icon {
+        @apply absolute bottom-[-16px] right-[-16px] z-[1] text-[160px] text-[rgba(255,255,255,0.04)];
+    }
+
+    .directives-panel {
+        @apply min-h-full p-8;
+    }
+
+    .directives-panel h3 {
+        @apply mb-8 flex items-center gap-3 font-headline text-[22px] font-extrabold text-on-surface;
+    }
+
+    .directives-panel h3 .material-symbols-outlined {
+        @apply text-primary;
+    }
+
+    .directive {
+        @apply mb-5 flex gap-4 border-b border-b-[rgba(192,196,195,0.06)] pb-5;
+    }
+
+    .directive:last-child {
+        @apply mb-0 border-b-0;
+    }
+
+    .directive-icon {
+        @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-xl;
+    }
+
+    .directive-icon.red {
+        @apply border border-[rgba(179,27,37,0.1)] bg-[rgba(251,81,81,0.08)] text-error;
+    }
+
+    .directive-icon.teal {
+        @apply border border-[rgba(39,101,93,0.1)] bg-[rgba(177,238,228,0.2)] text-secondary;
+    }
+
+    .directive-icon.green {
+        @apply border border-emerald-200 bg-emerald-100 text-emerald-700;
+    }
+
+    .directive-icon.gray {
+        @apply border border-slate-200 bg-slate-100 text-slate-600;
+    }
+
+    .directive-body h4 {
+        @apply mb-1 text-[13px] font-bold uppercase tracking-[0.3px];
+    }
+
+    .directive-body p {
+        @apply mb-2 text-[13px] leading-[1.5] text-on-surface-variant;
+    }
+
+    .tag {
+        @apply inline-block rounded-[3px] px-2 py-0.5 text-[10px] font-black uppercase text-white;
+    }
+
+    .tag-urgent {
+        @apply bg-error;
+    }
+
+    .tag-strategic {
+        @apply bg-secondary;
+    }
+
+    .tag-action {
+        @apply bg-emerald-600;
+    }
+
+    .tag-planning {
+        @apply bg-slate-500;
+    }
+
+    .tag-info {
+        @apply bg-slate-400;
+    }
+
+}

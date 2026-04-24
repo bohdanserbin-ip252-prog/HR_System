@@ -1,0 +1,89 @@
+@layer components {
+    .dev-mentorship {
+        @apply flex flex-col gap-5;
+    }
+
+    .dev-mentorship > h2 {
+        @apply mb-2 font-headline text-[22px] font-bold;
+    }
+
+    .dev-card {
+        @apply flex flex-col gap-5 rounded-xl border border-[rgba(171,174,173,0.15)] bg-surface-container-lowest p-6 shadow-sm;
+    }
+
+    .dev-card-title {
+        @apply flex items-center gap-2 border-b border-b-surface-container-highest pb-3 font-headline text-base font-semibold;
+    }
+
+    .dev-feedback-item {
+        @apply flex gap-3;
+    }
+
+    .dev-feedback-avatar {
+        @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[rgba(171,174,173,0.2)] font-headline text-[13px] font-bold;
+    }
+
+    .dev-feedback-bubble {
+        @apply flex-1 rounded-xl rounded-tl-none bg-surface-container-low px-4 py-3.5;
+    }
+
+    .dev-feedback-head {
+        @apply mb-1.5 flex flex-wrap items-baseline justify-between gap-2;
+    }
+
+    .dev-feedback-name {
+        @apply text-[13px] font-semibold;
+    }
+
+    .dev-feedback-time {
+        @apply text-[11px] text-on-surface-variant;
+    }
+
+    .dev-feedback-text {
+        @apply text-[13px] italic leading-[1.5] text-on-surface-variant;
+    }
+
+    .dev-feedback-btn {
+        @apply flex w-full cursor-pointer items-center justify-center gap-2 rounded-md border-none bg-transparent p-2.5 text-[13px] font-medium text-primary transition-colors;
+    }
+
+    .dev-feedback-btn:hover {
+        @apply bg-surface-container-low;
+    }
+
+    .dev-meeting-item {
+        @apply flex flex-wrap cursor-pointer items-center justify-between gap-3 rounded-md bg-surface-container-low p-3.5 transition-colors;
+    }
+
+    .dev-meeting-item:hover {
+        @apply bg-surface-container;
+    }
+
+    .dev-meeting-left {
+        @apply flex items-center gap-3.5;
+    }
+
+    .dev-meeting-date {
+        @apply flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-md border border-[rgba(171,174,173,0.15)] bg-surface-container-lowest;
+    }
+
+    .dev-meeting-month {
+        @apply text-[10px] font-bold uppercase text-error;
+    }
+
+    .dev-meeting-day {
+        @apply font-headline text-lg font-extrabold leading-none;
+    }
+
+    .dev-meeting-info span:first-child {
+        @apply block text-[13px] font-semibold;
+    }
+
+    .dev-meeting-info span:last-child {
+        @apply mt-0.5 flex items-center gap-1 text-[11px] text-on-surface-variant;
+    }
+
+    .dev-meeting-info span:last-child .material-symbols-outlined {
+        @apply text-sm;
+    }
+}

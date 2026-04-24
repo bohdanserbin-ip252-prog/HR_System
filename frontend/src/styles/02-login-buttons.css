@@ -1,0 +1,127 @@
+@layer components {
+    #loginScreen {
+        @apply fixed inset-0 z-[10000] flex items-center justify-center bg-surface;
+    }
+
+    .login-container {
+        @apply w-[440px] rounded-2xl border border-[rgba(192,196,195,0.15)] bg-white p-12 shadow-lg;
+    }
+
+    .login-logo {
+        @apply mb-9 text-center;
+    }
+
+    .login-logo .logo-box {
+        @apply mb-4 inline-flex h-16 w-16 items-center justify-center rounded-xl bg-primary text-on-primary;
+        box-shadow: 0 4px 16px rgba(0, 105, 68, 0.3);
+    }
+
+    .login-logo .logo-box .material-symbols-outlined {
+        @apply text-[32px];
+    }
+
+    .login-logo h1 {
+        @apply font-headline text-[26px] font-extrabold text-emerald-900;
+    }
+
+    .login-logo p {
+        @apply mt-1 text-sm text-on-surface-variant;
+    }
+
+    .form-group {
+        @apply mb-5;
+    }
+
+    .form-group label {
+        @apply mb-1.5 block text-xs font-semibold uppercase tracking-[0.5px] text-on-surface-variant;
+    }
+
+    .form-input {
+        @apply w-full rounded-md border border-[rgba(192,196,195,0.3)] bg-surface-container-low px-4 py-3 text-sm text-on-surface;
+        font-family: var(--font-body);
+        transition:
+            background-color var(--motion-duration-base) var(--motion-ease-standard),
+            border-color var(--motion-duration-base) var(--motion-ease-standard),
+            box-shadow var(--motion-duration-base) var(--motion-ease-standard),
+            color var(--motion-duration-base) var(--motion-ease-standard);
+    }
+
+    .form-input:focus {
+        @apply border-primary outline-none;
+        box-shadow: 0 0 0 3px rgba(0, 105, 68, 0.12);
+    }
+
+    .form-input::placeholder {
+        @apply text-outline;
+    }
+
+    .login-error {
+        @apply mb-4 hidden rounded-sm border border-[rgba(179,27,37,0.2)] bg-[rgba(179,27,37,0.06)] px-3.5 py-2.5 text-[13px] text-error;
+    }
+
+    .btn {
+        @apply inline-flex cursor-pointer items-center gap-2 rounded-md border-none px-5 py-2.5 text-sm font-semibold no-underline;
+        font-family: var(--font-body);
+        transition:
+            background-color var(--motion-duration-base) var(--motion-ease-standard),
+            border-color var(--motion-duration-base) var(--motion-ease-standard),
+            box-shadow var(--motion-duration-base) var(--motion-ease-standard),
+            color var(--motion-duration-base) var(--motion-ease-standard),
+            opacity var(--motion-duration-base) var(--motion-ease-standard),
+            transform var(--motion-duration-base) var(--motion-ease-standard);
+    }
+
+    .btn-primary {
+        @apply bg-primary text-on-primary;
+        box-shadow: 0 2px 8px rgba(0, 105, 68, 0.25);
+    }
+
+    .btn-primary:hover {
+        @apply opacity-90;
+        transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+        @apply bg-surface-container text-on-surface-variant;
+    }
+
+    .btn-secondary:hover {
+        @apply bg-surface-container-high;
+    }
+
+    .btn-danger {
+        @apply bg-error text-white;
+    }
+
+    .btn-danger:hover {
+        @apply opacity-90;
+    }
+
+    .btn-full {
+        @apply w-full justify-center px-5 py-3.5 text-[15px] font-bold;
+    }
+
+    .btn-sm {
+        @apply px-3.5 py-1.5 text-[13px];
+    }
+
+    .btn-icon {
+        @apply inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-md border border-[rgba(192,196,195,0.2)] bg-transparent p-0 text-on-surface-variant;
+        transition:
+            background-color var(--motion-duration-base) var(--motion-ease-standard),
+            border-color var(--motion-duration-base) var(--motion-ease-standard),
+            color var(--motion-duration-base) var(--motion-ease-standard);
+    }
+
+    .btn-icon:hover {
+        @apply border-primary bg-emerald-50 text-primary;
+    }
+
+    .btn-outline {
+        @apply border border-[rgba(192,196,195,0.3)] bg-transparent text-xs font-bold uppercase tracking-[1px] text-on-surface-variant;
+    }
+
+    .btn-outline:hover {
+        @apply bg-emerald-50 text-emerald-700;
+    }
+}

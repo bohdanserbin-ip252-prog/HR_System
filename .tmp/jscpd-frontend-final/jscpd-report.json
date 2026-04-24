@@ -1,0 +1,3533 @@
+{
+  "statistics": {
+    "detectionDate": "2026-04-23T12:13:07.362Z",
+    "formats": {
+      "javascript": {
+        "sources": {
+          "frontend/src/components/platform/surveys/surveyNormalization.js": {
+            "lines": 60,
+            "tokens": 770,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/platform/recruitment/recruitmentConfig.js": {
+            "lines": 24,
+            "tokens": 339,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/platform/recruitment/RecruitmentCreateForm.jsx": {
+            "lines": 42,
+            "tokens": 542,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/hooks/appActions/helpers.js": {
+            "lines": 92,
+            "tokens": 604,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/hooks/appActions/constants.js": {
+            "lines": 34,
+            "tokens": 241,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/profile/profileDateUtils.js": {
+            "lines": 31,
+            "tokens": 295,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/profile/ProfileSidebar.jsx": {
+            "lines": 27,
+            "tokens": 424,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/profile/ProfileMain.jsx": {
+            "lines": 132,
+            "tokens": 1815,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 66,
+            "duplicatedTokens": 1182,
+            "percentage": 50,
+            "percentageTokens": 65.12,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/profile/ProfileComplaintsSection.jsx": {
+            "lines": 0,
+            "tokens": 5,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/platform/usePlatformData.js": {
+            "lines": 27,
+            "tokens": 345,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/platform/PlatformListPage.jsx": {
+            "lines": 9,
+            "tokens": 171,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/platform/PlatformCard.jsx": {
+            "lines": 0,
+            "tokens": 7,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/modalEngine/useRemoteEntityModalForm.js": {
+            "lines": 64,
+            "tokens": 464,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 9,
+            "duplicatedTokens": 82,
+            "percentage": 14.06,
+            "percentageTokens": 17.67,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/modalEngine/useLocalEntityModalForm.js": {
+            "lines": 70,
+            "tokens": 424,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/modalEngine/submitEntityMutation.js": {
+            "lines": 53,
+            "tokens": 406,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/modalEngine/fetchEmployeesForSelect.js": {
+            "lines": 8,
+            "tokens": 124,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/modalEngine/EntityModalFrame.jsx": {
+            "lines": 31,
+            "tokens": 183,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/modalEngine/EntityFormFields.jsx": {
+            "lines": 74,
+            "tokens": 632,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/employees/useEmployeesPageData.js": {
+            "lines": 139,
+            "tokens": 1456,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 14,
+            "duplicatedTokens": 166,
+            "percentage": 10.07,
+            "percentageTokens": 11.4,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/employees/EmployeesToolbar.jsx": {
+            "lines": 44,
+            "tokens": 406,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/employees/EmployeesTable.jsx": {
+            "lines": 156,
+            "tokens": 1341,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/employees/EmployeesResults.jsx": {
+            "lines": 50,
+            "tokens": 243,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/employees/EmployeesCardList.jsx": {
+            "lines": 31,
+            "tokens": 263,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/employees/CustomSelect.jsx": {
+            "lines": 52,
+            "tokens": 476,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/employeeModal/useEmployeeModalData.js": {
+            "lines": 85,
+            "tokens": 830,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 9,
+            "duplicatedTokens": 82,
+            "percentage": 10.59,
+            "percentageTokens": 9.88,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/employeeModal/formUtils.js": {
+            "lines": 57,
+            "tokens": 609,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 6,
+            "duplicatedTokens": 80,
+            "percentage": 10.53,
+            "percentageTokens": 13.14,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/employeeModal/EmployeeModalForm.jsx": {
+            "lines": 163,
+            "tokens": 1353,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/development/developmentViewModel.js": {
+            "lines": 22,
+            "tokens": 122,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/development/DevelopmentMeetingsCard.jsx": {
+            "lines": 59,
+            "tokens": 557,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 15,
+            "duplicatedTokens": 94,
+            "percentage": 25.42,
+            "percentageTokens": 16.88,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/development/DevelopmentItemActions.jsx": {
+            "lines": 6,
+            "tokens": 170,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/development/DevelopmentGoalsSection.jsx": {
+            "lines": 53,
+            "tokens": 513,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/development/DevelopmentFeedbackCard.jsx": {
+            "lines": 47,
+            "tokens": 489,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 15,
+            "duplicatedTokens": 94,
+            "percentage": 31.91,
+            "percentageTokens": 19.22,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/dashboard/NotificationCenter.jsx": {
+            "lines": 0,
+            "tokens": 5,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/dashboard/DashboardCharts.jsx": {
+            "lines": 48,
+            "tokens": 669,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/hooks/useSessionController.js": {
+            "lines": 143,
+            "tokens": 1036,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/hooks/useDesktopNotificationController.js": {
+            "lines": 92,
+            "tokens": 760,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/hooks/useDarkMode.js": {
+            "lines": 32,
+            "tokens": 361,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/hooks/useAsyncStatus.js": {
+            "lines": 35,
+            "tokens": 273,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/hooks/useAppDataController.js": {
+            "lines": 217,
+            "tokens": 1723,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/hooks/useAppActionsController.js": {
+            "lines": 220,
+            "tokens": 2245,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/hooks/useAbortableLoadEffect.js": {
+            "lines": 28,
+            "tokens": 272,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/desktopNotifications/storage.js": {
+            "lines": 35,
+            "tokens": 279,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/desktopNotifications/reminders.js": {
+            "lines": 149,
+            "tokens": 1362,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/desktopNotifications/preferences.js": {
+            "lines": 62,
+            "tokens": 533,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/desktopNotifications/history.js": {
+            "lines": 40,
+            "tokens": 423,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/desktopNotifications/env.js": {
+            "lines": 10,
+            "tokens": 80,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/desktopNotifications/delivery.js": {
+            "lines": 23,
+            "tokens": 209,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/desktopNotifications/dateUtils.js": {
+            "lines": 36,
+            "tokens": 463,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/desktopNotifications/constants.js": {
+            "lines": 15,
+            "tokens": 147,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/WorkflowsPage.jsx": {
+            "lines": 12,
+            "tokens": 185,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/TrainingPage.jsx": {
+            "lines": 34,
+            "tokens": 544,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/TimeOffPage.jsx": {
+            "lines": 16,
+            "tokens": 344,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/TaskModal.jsx": {
+            "lines": 13,
+            "tokens": 82,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/SurveysPage.jsx": {
+            "lines": 100,
+            "tokens": 1223,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/SkeletonTable.jsx": {
+            "lines": 10,
+            "tokens": 228,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/SettingsPage.jsx": {
+            "lines": 45,
+            "tokens": 751,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/SectionEmptyState.jsx": {
+            "lines": 2,
+            "tokens": 15,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/SchedulingPage.jsx": {
+            "lines": 56,
+            "tokens": 1077,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ReportsPage.jsx": {
+            "lines": 53,
+            "tokens": 620,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/RecruitmentPage.jsx": {
+            "lines": 73,
+            "tokens": 1103,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/RbacPage.jsx": {
+            "lines": 21,
+            "tokens": 325,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ProfilePage.jsx": {
+            "lines": 11,
+            "tokens": 104,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/PositionsPage.jsx": {
+            "lines": 39,
+            "tokens": 243,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/PositionModal.jsx": {
+            "lines": 14,
+            "tokens": 83,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/PortalPage.jsx": {
+            "lines": 13,
+            "tokens": 285,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/PerformancePage.jsx": {
+            "lines": 62,
+            "tokens": 1108,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/PayrollPage.jsx": {
+            "lines": 10,
+            "tokens": 201,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/PageStateBoundary.jsx": {
+            "lines": 2,
+            "tokens": 21,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/OrganizationPage.jsx": {
+            "lines": 42,
+            "tokens": 438,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/OrganizationModalsHost.jsx": {
+            "lines": 11,
+            "tokens": 127,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/OrgChartPage.jsx": {
+            "lines": 21,
+            "tokens": 378,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/OnboardingPage.jsx": {
+            "lines": 130,
+            "tokens": 1616,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/NotificationPage.jsx": {
+            "lines": 22,
+            "tokens": 310,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/NotificationBell.jsx": {
+            "lines": 7,
+            "tokens": 117,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/MoveButtons.jsx": {
+            "lines": 18,
+            "tokens": 197,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ModalFrame.jsx": {
+            "lines": 20,
+            "tokens": 184,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/MeetingModal.jsx": {
+            "lines": 13,
+            "tokens": 82,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/LoginScreen.jsx": {
+            "lines": 35,
+            "tokens": 353,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ImportPage.jsx": {
+            "lines": 7,
+            "tokens": 181,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/HelpDeskPage.jsx": {
+            "lines": 43,
+            "tokens": 946,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/GoalModal.jsx": {
+            "lines": 13,
+            "tokens": 82,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/GlobalSearch.jsx": {
+            "lines": 65,
+            "tokens": 584,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/FormErrorMessage.jsx": {
+            "lines": 0,
+            "tokens": 24,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/FeedbackModal.jsx": {
+            "lines": 62,
+            "tokens": 568,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 24,
+            "duplicatedTokens": 296,
+            "percentage": 38.71,
+            "percentageTokens": 52.11,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/FeatureFlagsPage.jsx": {
+            "lines": 37,
+            "tokens": 337,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ExportCsvButton.jsx": {
+            "lines": 1,
+            "tokens": 25,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ErrorBoundary.jsx": {
+            "lines": 0,
+            "tokens": 5,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/EmployeesPage.jsx": {
+            "lines": 38,
+            "tokens": 266,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/EmployeeModalsHost.jsx": {
+            "lines": 4,
+            "tokens": 59,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/EmployeeModal.jsx": {
+            "lines": 25,
+            "tokens": 180,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/Employee360Page.jsx": {
+            "lines": 66,
+            "tokens": 1033,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/DocumentsPage.jsx": {
+            "lines": 56,
+            "tokens": 766,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/DevelopmentPage.jsx": {
+            "lines": 20,
+            "tokens": 125,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/DevelopmentOnboardingModalsHost.jsx": {
+            "lines": 29,
+            "tokens": 287,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/DepartmentsPage.jsx": {
+            "lines": 35,
+            "tokens": 228,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/DepartmentModal.jsx": {
+            "lines": 14,
+            "tokens": 83,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/DashboardPage.jsx": {
+            "lines": 84,
+            "tokens": 1011,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ConfirmDeleteModal.jsx": {
+            "lines": 19,
+            "tokens": 214,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ConfirmDeleteHost.jsx": {
+            "lines": 5,
+            "tokens": 51,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/CompliancePage.jsx": {
+            "lines": 38,
+            "tokens": 717,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ComplaintsPage.jsx": {
+            "lines": 142,
+            "tokens": 1571,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ComplaintModal.jsx": {
+            "lines": 57,
+            "tokens": 1060,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 24,
+            "duplicatedTokens": 296,
+            "percentage": 42.11,
+            "percentageTokens": 27.92,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/AuditLogPage.jsx": {
+            "lines": 74,
+            "tokens": 608,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/AppShell.jsx": {
+            "lines": 141,
+            "tokens": 1394,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ActivityFeedPage.jsx": {
+            "lines": 22,
+            "tokens": 239,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ActionHeader.jsx": {
+            "lines": 12,
+            "tokens": 147,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/app/pageViews.jsx": {
+            "lines": 89,
+            "tokens": 776,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/app/pageRegistry.js": {
+            "lines": 62,
+            "tokens": 1170,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/app/endpoints.js": {
+            "lines": 32,
+            "tokens": 359,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/app/ModalHosts.jsx": {
+            "lines": 26,
+            "tokens": 195,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/permissions.js": {
+            "lines": 13,
+            "tokens": 100,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/modalDomUtils.js": {
+            "lines": 3,
+            "tokens": 50,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/formValidation.js": {
+            "lines": 37,
+            "tokens": 473,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/exportUtils.js": {
+            "lines": 17,
+            "tokens": 257,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/developmentOnboardingFormUtils.js": {
+            "lines": 40,
+            "tokens": 534,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 6,
+            "duplicatedTokens": 80,
+            "percentage": 15,
+            "percentageTokens": 14.98,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/desktopNotifications.js": {
+            "lines": 21,
+            "tokens": 112,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/appStateBuilders.js": {
+            "lines": 109,
+            "tokens": 668,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/appRuntime.js": {
+            "lines": 114,
+            "tokens": 1251,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/appContext.tsx": {
+            "lines": 1,
+            "tokens": 14,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/App.jsx": {
+            "lines": 31,
+            "tokens": 209,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 5536,
+          "tokens": 58762,
+          "sources": 120,
+          "clones": 6,
+          "duplicatedLines": 94,
+          "duplicatedTokens": 1226,
+          "percentage": 1.7,
+          "percentageTokens": 2.09,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "jsx": {
+        "sources": {
+          "frontend/src/components/platform/recruitment/RecruitmentCreateForm.jsx": {
+            "lines": 49,
+            "tokens": 614,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/profile/ProfileSidebar.jsx": {
+            "lines": 80,
+            "tokens": 1150,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/profile/ProfileMain.jsx": {
+            "lines": 161,
+            "tokens": 2173,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/profile/ProfileComplaintsSection.jsx": {
+            "lines": 32,
+            "tokens": 351,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/platform/PlatformListPage.jsx": {
+            "lines": 32,
+            "tokens": 416,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/platform/PlatformCard.jsx": {
+            "lines": 13,
+            "tokens": 160,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/modalEngine/EntityModalFrame.jsx": {
+            "lines": 57,
+            "tokens": 317,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/modalEngine/EntityFormFields.jsx": {
+            "lines": 93,
+            "tokens": 772,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/employees/EmployeesToolbar.jsx": {
+            "lines": 90,
+            "tokens": 746,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/employees/EmployeesTable.jsx": {
+            "lines": 170,
+            "tokens": 1462,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/employees/EmployeesResults.jsx": {
+            "lines": 75,
+            "tokens": 363,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/employees/EmployeesCardList.jsx": {
+            "lines": 45,
+            "tokens": 395,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/employees/CustomSelect.jsx": {
+            "lines": 151,
+            "tokens": 1248,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/employeeModal/EmployeeModalForm.jsx": {
+            "lines": 175,
+            "tokens": 1451,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/development/DevelopmentMeetingsCard.jsx": {
+            "lines": 85,
+            "tokens": 709,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/development/DevelopmentItemActions.jsx": {
+            "lines": 27,
+            "tokens": 279,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/development/DevelopmentGoalsSection.jsx": {
+            "lines": 83,
+            "tokens": 689,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/development/DevelopmentFeedbackCard.jsx": {
+            "lines": 73,
+            "tokens": 637,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/dashboard/RiskPanel.jsx": {
+            "lines": 26,
+            "tokens": 402,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/dashboard/NotificationCenter.jsx": {
+            "lines": 46,
+            "tokens": 539,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/dashboard/DashboardCharts.jsx": {
+            "lines": 104,
+            "tokens": 1311,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/WorkflowsPage.jsx": {
+            "lines": 46,
+            "tokens": 477,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/TrainingPage.jsx": {
+            "lines": 123,
+            "tokens": 1573,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 7,
+            "duplicatedTokens": 81,
+            "percentage": 5.69,
+            "percentageTokens": 5.15,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/TimeOffPage.jsx": {
+            "lines": 59,
+            "tokens": 735,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/TaskModal.jsx": {
+            "lines": 206,
+            "tokens": 1430,
+            "sources": 1,
+            "clones": 3,
+            "duplicatedLines": 38,
+            "duplicatedTokens": 316,
+            "percentage": 18.45,
+            "percentageTokens": 22.1,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/SurveysPage.jsx": {
+            "lines": 242,
+            "tokens": 2758,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/SkeletonTable.jsx": {
+            "lines": 19,
+            "tokens": 322,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 12,
+            "duplicatedTokens": 210,
+            "percentage": 63.16,
+            "percentageTokens": 65.22,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/SkeletonCard.jsx": {
+            "lines": 17,
+            "tokens": 169,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/SettingsPage.jsx": {
+            "lines": 85,
+            "tokens": 1172,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/SectionEmptyState.jsx": {
+            "lines": 20,
+            "tokens": 106,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/SchedulingPage.jsx": {
+            "lines": 163,
+            "tokens": 2484,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ReportsPage.jsx": {
+            "lines": 102,
+            "tokens": 1239,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/RecruitmentPage.jsx": {
+            "lines": 219,
+            "tokens": 2563,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/RbacPage.jsx": {
+            "lines": 60,
+            "tokens": 756,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ProfilePage.jsx": {
+            "lines": 92,
+            "tokens": 917,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/PositionsPage.jsx": {
+            "lines": 57,
+            "tokens": 383,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/PositionModal.jsx": {
+            "lines": 191,
+            "tokens": 1319,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 18,
+            "duplicatedTokens": 134,
+            "percentage": 9.42,
+            "percentageTokens": 10.16,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/PortalPage.jsx": {
+            "lines": 61,
+            "tokens": 843,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/PerformancePage.jsx": {
+            "lines": 161,
+            "tokens": 2367,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/PayrollPage.jsx": {
+            "lines": 53,
+            "tokens": 579,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/PageStateBoundary.jsx": {
+            "lines": 28,
+            "tokens": 258,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/OrganizationPage.jsx": {
+            "lines": 139,
+            "tokens": 1202,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 16,
+            "duplicatedTokens": 177,
+            "percentage": 11.51,
+            "percentageTokens": 14.73,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/OrganizationModalsHost.jsx": {
+            "lines": 22,
+            "tokens": 196,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/OrgChartPage.jsx": {
+            "lines": 51,
+            "tokens": 621,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/OnboardingPage.jsx": {
+            "lines": 210,
+            "tokens": 2720,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/NotificationPage.jsx": {
+            "lines": 98,
+            "tokens": 1252,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 8,
+            "duplicatedTokens": 94,
+            "percentage": 8.16,
+            "percentageTokens": 7.51,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/NotificationBell.jsx": {
+            "lines": 41,
+            "tokens": 423,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/MoveButtons.jsx": {
+            "lines": 33,
+            "tokens": 327,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ModalFrame.jsx": {
+            "lines": 129,
+            "tokens": 1039,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/MeetingModal.jsx": {
+            "lines": 162,
+            "tokens": 1073,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 25,
+            "duplicatedTokens": 203,
+            "percentage": 15.43,
+            "percentageTokens": 18.92,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/LoginScreen.jsx": {
+            "lines": 53,
+            "tokens": 463,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ImportPage.jsx": {
+            "lines": 48,
+            "tokens": 627,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/HelpDeskPage.jsx": {
+            "lines": 100,
+            "tokens": 1515,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/GoalModal.jsx": {
+            "lines": 209,
+            "tokens": 1478,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 13,
+            "duplicatedTokens": 113,
+            "percentage": 6.22,
+            "percentageTokens": 7.65,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/GlobalSearch.jsx": {
+            "lines": 160,
+            "tokens": 1500,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/FormErrorMessage.jsx": {
+            "lines": 8,
+            "tokens": 94,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/FeedbackModal.jsx": {
+            "lines": 218,
+            "tokens": 1836,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 8,
+            "duplicatedTokens": 79,
+            "percentage": 3.67,
+            "percentageTokens": 4.3,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/FeatureFlagsPage.jsx": {
+            "lines": 150,
+            "tokens": 1446,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 8,
+            "duplicatedTokens": 86,
+            "percentage": 5.33,
+            "percentageTokens": 5.95,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ExportCsvButton.jsx": {
+            "lines": 14,
+            "tokens": 123,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ErrorBoundary.jsx": {
+            "lines": 42,
+            "tokens": 321,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/EmptyState.jsx": {
+            "lines": 8,
+            "tokens": 87,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/EmployeesPage.jsx": {
+            "lines": 100,
+            "tokens": 782,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/EmployeeModalsHost.jsx": {
+            "lines": 12,
+            "tokens": 110,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/EmployeeModal.jsx": {
+            "lines": 122,
+            "tokens": 917,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/Employee360Page.jsx": {
+            "lines": 103,
+            "tokens": 1381,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/DocumentsPage.jsx": {
+            "lines": 167,
+            "tokens": 2076,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 15,
+            "duplicatedTokens": 175,
+            "percentage": 8.98,
+            "percentageTokens": 8.43,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/DevelopmentPage.jsx": {
+            "lines": 78,
+            "tokens": 703,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/DevelopmentOnboardingModalsHost.jsx": {
+            "lines": 53,
+            "tokens": 502,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/DepartmentsPage.jsx": {
+            "lines": 52,
+            "tokens": 355,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/DepartmentModal.jsx": {
+            "lines": 165,
+            "tokens": 1051,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 18,
+            "duplicatedTokens": 134,
+            "percentage": 10.91,
+            "percentageTokens": 12.75,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/DashboardPage.jsx": {
+            "lines": 220,
+            "tokens": 2437,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ConfirmDeleteModal.jsx": {
+            "lines": 70,
+            "tokens": 557,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ConfirmDeleteHost.jsx": {
+            "lines": 13,
+            "tokens": 99,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/CompliancePage.jsx": {
+            "lines": 127,
+            "tokens": 2139,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 17,
+            "duplicatedTokens": 171,
+            "percentage": 13.39,
+            "percentageTokens": 7.99,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ComplaintsPage.jsx": {
+            "lines": 233,
+            "tokens": 2467,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ComplaintModal.jsx": {
+            "lines": 228,
+            "tokens": 2639,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 8,
+            "duplicatedTokens": 79,
+            "percentage": 3.51,
+            "percentageTokens": 2.99,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/AuditLogPage.jsx": {
+            "lines": 183,
+            "tokens": 1787,
+            "sources": 1,
+            "clones": 3,
+            "duplicatedLines": 25,
+            "duplicatedTokens": 262,
+            "percentage": 13.66,
+            "percentageTokens": 14.66,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/AppShell.jsx": {
+            "lines": 207,
+            "tokens": 1974,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ActivityFeedPage.jsx": {
+            "lines": 96,
+            "tokens": 1022,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/components/ActionHeader.jsx": {
+            "lines": 35,
+            "tokens": 290,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/app/pageViews.jsx": {
+            "lines": 130,
+            "tokens": 1113,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/app/ModalHosts.jsx": {
+            "lines": 42,
+            "tokens": 317,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/main.jsx": {
+            "lines": 4,
+            "tokens": 45,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/App.jsx": {
+            "lines": 206,
+            "tokens": 1459,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 8212,
+          "tokens": 83199,
+          "sources": 84,
+          "clones": 12,
+          "duplicatedLines": 118,
+          "duplicatedTokens": 1157,
+          "percentage": 1.44,
+          "percentageTokens": 1.39,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "css": {
+        "sources": {
+          "frontend/src/styles/20-surveys-ux.css": {
+            "lines": 178,
+            "tokens": 959,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/19-recruitment-layout.css": {
+            "lines": 198,
+            "tokens": 1156,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/19-recruitment-cards.css": {
+            "lines": 115,
+            "tokens": 650,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/18-org-rbac-portal.css": {
+            "lines": 143,
+            "tokens": 877,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/17-kanban-tickets-surveys.css": {
+            "lines": 165,
+            "tokens": 1039,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/16-expansion-pages.css": {
+            "lines": 202,
+            "tokens": 1110,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/15-platform-updates.css": {
+            "lines": 79,
+            "tokens": 346,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/14-complaints.css": {
+            "lines": 178,
+            "tokens": 996,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/13-responsive.css": {
+            "lines": 209,
+            "tokens": 861,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/12-profile-details.css": {
+            "lines": 145,
+            "tokens": 540,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/11-profile-main.css": {
+            "lines": 116,
+            "tokens": 470,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/10-development-feedback-meetings.css": {
+            "lines": 88,
+            "tokens": 327,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/09-development-goals.css": {
+            "lines": 135,
+            "tokens": 501,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/08-onboarding-sections.css": {
+            "lines": 190,
+            "tokens": 714,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/07-modals-onboarding.css": {
+            "lines": 231,
+            "tokens": 1032,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/06c-skeleton.css": {
+            "lines": 85,
+            "tokens": 356,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/06b-data-cards.css": {
+            "lines": 99,
+            "tokens": 409,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/06-table-organization.css": {
+            "lines": 225,
+            "tokens": 1063,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/05-dashboard-cards.css": {
+            "lines": 241,
+            "tokens": 966,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/04-layout-nav-content.css": {
+            "lines": 171,
+            "tokens": 738,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/03-layout-shell.css": {
+            "lines": 164,
+            "tokens": 813,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/02-login-buttons.css": {
+            "lines": 110,
+            "tokens": 496,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/styles/01-base.css": {
+            "lines": 210,
+            "tokens": 1322,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/style.css": {
+            "lines": 23,
+            "tokens": 111,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 3700,
+          "tokens": 17852,
+          "sources": 24,
+          "clones": 0,
+          "duplicatedLines": 0,
+          "duplicatedTokens": 0,
+          "percentage": 0,
+          "percentageTokens": 0,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "typescript": {
+        "sources": {
+          "frontend/src/uiUtils.ts": {
+            "lines": 70,
+            "tokens": 817,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/toast.ts": {
+            "lines": 28,
+            "tokens": 383,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "frontend/src/api.ts": {
+            "lines": 113,
+            "tokens": 1194,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 211,
+          "tokens": 2394,
+          "sources": 3,
+          "clones": 0,
+          "duplicatedLines": 0,
+          "duplicatedTokens": 0,
+          "percentage": 0,
+          "percentageTokens": 0,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "tsx": {
+        "sources": {
+          "frontend/src/appContext.tsx": {
+            "lines": 31,
+            "tokens": 281,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 31,
+          "tokens": 281,
+          "sources": 1,
+          "clones": 0,
+          "duplicatedLines": 0,
+          "duplicatedTokens": 0,
+          "percentage": 0,
+          "percentageTokens": 0,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      }
+    },
+    "total": {
+      "lines": 17690,
+      "tokens": 162488,
+      "sources": 232,
+      "clones": 18,
+      "duplicatedLines": 212,
+      "duplicatedTokens": 2383,
+      "percentage": 1.2,
+      "percentageTokens": 1.47,
+      "newDuplicatedLines": 0,
+      "newClones": 0
+    }
+  },
+  "duplicates": [
+    {
+      "format": "javascript",
+      "lines": 34,
+      "fragment": "={{ fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--on-surface-variant)', marginBottom: '4px' }}>Посада</p>\n                <p style={{ fontSize: '15px', fontWeight: 500 }}>{employee.position_title || 'Не вказано'}</p>\n              </div>\n              <div>\n                <p style={{ fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--on-surface-variant)', marginBottom: '4px' }}>Дата народження</p>\n                <p style={{ fontSize: '15px', fontWeight: 500 }}>{employee.birth_date ? formatDate(employee.birth_date) : 'Не вказано'}</p>\n              </div>\n              <div>\n                <p style={{ fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--on-surface-variant)', marginBottom: '4px' }}>Email</p>\n                <p style={{ fontSize: '15px', fontWeight: 500 }}>{employee.email || 'Не вказано'}</p>\n              </div>\n              <div>\n                <p style={{ fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--on-surface-variant)', marginBottom: '4px' }}>Телефон</p>\n                <p style={{ fontSize: '15px', fontWeight: 500 }}>{employee.phone || 'Не вказано'}</p>\n              </div>\n              <div className=\"profile-info-grid-full\">\n                <p style={{ fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--on-surface-variant)', marginBottom: '4px' }}>Адреса</p>\n                <p style={{ fontSize: '15px', fontWeight: 500 }}>{employee.address || 'Не вказано'}</p>\n              </div>\n            </div>\n          </div>\n        </section>\n\n        <section className=\"profile-section\">\n          <h2 className=\"profile-section-title\">\n            <span className=\"material-symbols-outlined\">psychology</span>\n            Компетенції та кваліфікація\n          </h2>\n          <div id=\"profileSkills\">\n            <div className=\"skills-group\">\n              <div className=\"skills-group-label\">Основні компетенції</div>\n              <div className=\"skills-tags\">\n                {primarySkills.map(skill => (\n                  <span key={skill",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/profile/ProfileMain.jsx",
+        "start": 30,
+        "end": 63,
+        "startLoc": {
+          "line": 30,
+          "column": 6,
+          "position": 428
+        },
+        "endLoc": {
+          "line": 63,
+          "column": 6,
+          "position": 1019
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/profile/ProfileMain.jsx",
+        "start": 26,
+        "end": 30,
+        "startLoc": {
+          "line": 26,
+          "column": 6,
+          "position": 340
+        },
+        "endLoc": {
+          "line": 30,
+          "column": 2,
+          "position": 430
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 8,
+      "fragment": "(Array.isArray(data) ? data : []);\n      } catch (error) {\n        if (isAbortedLoad(error, signal)) return;\n        if (error?.status === 401) {\n          handleUnauthorized(error.message || 'Сесію завершено. Увійдіть повторно.');\n          return;\n        }\n        setEmployees",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/employees/useEmployeesPageData.js",
+        "start": 92,
+        "end": 99,
+        "startLoc": {
+          "line": 92,
+          "column": 13,
+          "position": 1092
+        },
+        "endLoc": {
+          "line": 99,
+          "column": 13,
+          "position": 1175
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/employees/useEmployeesPageData.js",
+        "start": 59,
+        "end": 66,
+        "startLoc": {
+          "line": 59,
+          "column": 15,
+          "position": 730
+        },
+        "endLoc": {
+          "line": 66,
+          "column": 14,
+          "position": 813
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 10,
+      "fragment": "));\n        }\n      } catch (error) {\n        if (isAbortedLoad(error, signal)) return;\n        if (error?.status === 401) {\n          onClose();\n          handleUnauthorized(error.message || 'Сесію завершено. Увійдіть повторно.');\n          return;\n        }\n        failWithError(error, 'Помилка завантаження форми працівника'",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/employeeModal/useEmployeeModalData.js",
+        "start": 61,
+        "end": 70,
+        "startLoc": {
+          "line": 61,
+          "column": 2,
+          "position": 673
+        },
+        "endLoc": {
+          "line": 70,
+          "column": 40,
+          "position": 755
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/modalEngine/useRemoteEntityModalForm.js",
+        "start": 49,
+        "end": 59,
+        "startLoc": {
+          "line": 49,
+          "column": 7,
+          "position": 344
+        },
+        "endLoc": {
+          "line": 59,
+          "column": 19,
+          "position": 427
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 16,
+      "fragment": "={{\n                    display: 'flex',\n                    justifyContent: 'space-between',\n                    gap: '12px',\n                    alignItems: 'center',\n                    marginBottom: '16px'\n                }}\n                title=\"Останні відгуки\"\n                titleLevel=\"h3\"\n                titleClassName=\"dev-card-title\"\n                titleStyle={{ marginBottom: 0 }}\n                titleIcon=\"forum\"\n                titleIconStyle={{ color: 'var(--primary)' }}\n                showAction={isAdmin}\n                actionLabel=\"Додати відгук\"\n                onAction={openFeedbackCreate",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/development/DevelopmentFeedbackCard.jsx",
+        "start": 16,
+        "end": 31,
+        "startLoc": {
+          "line": 16,
+          "column": 15,
+          "position": 99
+        },
+        "endLoc": {
+          "line": 31,
+          "column": 19,
+          "position": 193
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/development/DevelopmentMeetingsCard.jsx",
+        "start": 17,
+        "end": 32,
+        "startLoc": {
+          "line": 17,
+          "column": 15,
+          "position": 109
+        },
+        "endLoc": {
+          "line": 32,
+          "column": 18,
+          "position": 203
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 7,
+      "fragment": "\">\n                    <div className=\"skeleton-cell\" style={{ width: '40%' }} />\n                    <div className=\"skeleton-cell\" style={{ width: '25%' }} />\n                    <div className=\"skeleton-cell\" style={{ width: '20%' }} />\n                    <div className=\"skeleton-cell\" style={{ width: '15%' }} />\n                </div>\n            )",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/SkeletonTable.jsx",
+        "start": 11,
+        "end": 17,
+        "startLoc": {
+          "line": 11,
+          "column": 13,
+          "position": 204
+        },
+        "endLoc": {
+          "line": 17,
+          "column": 2,
+          "position": 309
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/SkeletonTable.jsx",
+        "start": 4,
+        "end": 10,
+        "startLoc": {
+          "line": 4,
+          "column": 33,
+          "position": 57
+        },
+        "endLoc": {
+          "line": 10,
+          "column": 2,
+          "position": 162
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 14,
+      "fragment": "= [], onClose }) {\n    const { afterDevelopmentOnboardingMutation, handleUnauthorized } = useAppActions();\n    const {\n        errorMessage,\n        failWithError,\n        resetAsyncStatus,\n        setErrorMessage\n    } = useAsyncStatus();\n\n    const isAdmin = currentUser?.role === 'admin';\n\n    const { form, isSaving, setForm, setIsSaving } = useLocalEntityModalForm({\n        createEmptyForm,\n        entities: meetings",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/MeetingModal.jsx",
+        "start": 79,
+        "end": 92,
+        "startLoc": {
+          "line": 79,
+          "column": 2,
+          "position": 517
+        },
+        "endLoc": {
+          "line": 92,
+          "column": 9,
+          "position": 630
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/TaskModal.jsx",
+        "start": 120,
+        "end": 133,
+        "startLoc": {
+          "line": 120,
+          "column": 2,
+          "position": 835
+        },
+        "endLoc": {
+          "line": 133,
+          "column": 6,
+          "position": 948
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 13,
+      "fragment": ",\n        onClose,\n        resetAsyncStatus,\n        setErrorMessage\n    });\n\n    async function handleSubmit(event) {\n        event.preventDefault();\n        if (!isAdmin || isSaving) return;\n\n        const displayOrder = parseNonNegativeIntegerInput(form.displayOrder, { emptyValue: undefined });\n        const payload = {\n            date",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/MeetingModal.jsx",
+        "start": 98,
+        "end": 110,
+        "startLoc": {
+          "line": 98,
+          "column": 39,
+          "position": 664
+        },
+        "endLoc": {
+          "line": 110,
+          "column": 5,
+          "position": 754
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/TaskModal.jsx",
+        "start": 139,
+        "end": 151,
+        "startLoc": {
+          "line": 139,
+          "column": 38,
+          "position": 982
+        },
+        "endLoc": {
+          "line": 151,
+          "column": 5,
+          "position": 1072
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 14,
+      "fragment": "= [], onClose }) {\n    const { afterDevelopmentOnboardingMutation, handleUnauthorized } = useAppActions();\n    const {\n        errorMessage,\n        failWithError,\n        resetAsyncStatus,\n        setErrorMessage\n    } = useAsyncStatus();\n\n    const isAdmin = currentUser?.role === 'admin';\n\n    const { form, isSaving, setForm, setIsSaving } = useLocalEntityModalForm({\n        createEmptyForm,\n        entities: goals",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/GoalModal.jsx",
+        "start": 120,
+        "end": 133,
+        "startLoc": {
+          "line": 120,
+          "column": 2,
+          "position": 825
+        },
+        "endLoc": {
+          "line": 133,
+          "column": 6,
+          "position": 938
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/TaskModal.jsx",
+        "start": 120,
+        "end": 133,
+        "startLoc": {
+          "line": 120,
+          "column": 2,
+          "position": 835
+        },
+        "endLoc": {
+          "line": 133,
+          "column": 6,
+          "position": 948
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 9,
+      "fragment": "(Array.isArray(data) ? data : []);\n        }\n      } catch (error) {\n        if (isAbortedLoad(error, signal)) return;\n        if (error?.status === 401) {\n          handleUnauthorized(error.message || 'Сесію завершено. Увійдіть повторно.');\n          return;\n        }\n        failWithError",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/FeatureFlagsPage.jsx",
+        "start": 31,
+        "end": 39,
+        "startLoc": {
+          "line": 31,
+          "column": 9,
+          "position": 357
+        },
+        "endLoc": {
+          "line": 39,
+          "column": 14,
+          "position": 443
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/OrganizationPage.jsx",
+        "start": 57,
+        "end": 65,
+        "startLoc": {
+          "line": 57,
+          "column": 11,
+          "position": 429
+        },
+        "endLoc": {
+          "line": 65,
+          "column": 11,
+          "position": 515
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 9,
+      "fragment": "import { useState } from 'react';\nimport { API, fetchJSON } from '../api.js';\nimport { useAppActions } from '../appContext.jsx';\nimport { isAbortedLoad, useAbortableLoadEffect } from '../hooks/useAbortableLoadEffect.js';\nimport { useAsyncStatus } from '../hooks/useAsyncStatus.js';\nimport { formatDate } from '../uiUtils.js';\nimport PageStateBoundary from './PageStateBoundary.jsx';\n\nfunction",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/DocumentsPage.jsx",
+        "start": 1,
+        "end": 9,
+        "startLoc": {
+          "line": 1,
+          "column": 1,
+          "position": 0
+        },
+        "endLoc": {
+          "line": 9,
+          "column": 9,
+          "position": 94
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/NotificationPage.jsx",
+        "start": 1,
+        "end": 9,
+        "startLoc": {
+          "line": 1,
+          "column": 1,
+          "position": 0
+        },
+        "endLoc": {
+          "line": 9,
+          "column": 7,
+          "position": 94
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 8,
+      "fragment": "] = useState(false);\n  const { errorMessage, failWithError, finishLoading, isLoading, resetAsyncStatus, startLoading } =\n    useAsyncStatus();\n\n  useAbortableLoadEffect({\n    enabled: Boolean(isActive),\n    deps: [isActive, handleUnauthorized],\n    onDisabled: () => { setDocs",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/DocumentsPage.jsx",
+        "start": 22,
+        "end": 29,
+        "startLoc": {
+          "line": 22,
+          "column": 12,
+          "position": 270
+        },
+        "endLoc": {
+          "line": 29,
+          "column": 8,
+          "position": 351
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/TrainingPage.jsx",
+        "start": 12,
+        "end": 19,
+        "startLoc": {
+          "line": 12,
+          "column": 12,
+          "position": 161
+        },
+        "endLoc": {
+          "line": 19,
+          "column": 11,
+          "position": 242
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 19,
+      "fragment": ", handleUnauthorized } = useAppActions();\n    const [form, setForm] = useState(EMPTY_FORM);\n    const [isSaving, setIsSaving] = useState(false);\n    const {\n        errorMessage,\n        failWithError,\n        finishLoading,\n        isLoading,\n        resetAsyncStatus,\n        setErrorMessage,\n        startLoading\n    } = useAsyncStatus();\n\n    const isAdmin = currentUser?.role === 'admin';\n\n    useRemoteEntityModalForm({\n        deps: [],\n        emptyForm: EMPTY_FORM,\n        entityId: departmentId",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/DepartmentModal.jsx",
+        "start": 69,
+        "end": 87,
+        "startLoc": {
+          "line": 69,
+          "column": 24,
+          "position": 426
+        },
+        "endLoc": {
+          "line": 87,
+          "column": 13,
+          "position": 560
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/PositionModal.jsx",
+        "start": 80,
+        "end": 98,
+        "startLoc": {
+          "line": 80,
+          "column": 22,
+          "position": 534
+        },
+        "endLoc": {
+          "line": 98,
+          "column": 11,
+          "position": 668
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 25,
+      "fragment": "}\n            size=\"standard\"\n            isOpen={isOpen}\n            onClose={onClose}\n            isSaving={isSaving}\n            isLoading={isLoading}\n            errorMessage={errorMessage}\n            formId=\"complaintModalForm\"\n            onSubmit={handleSubmit}\n        >\n            <div className=\"form-row\">\n                <div className=\"form-group\">\n                    <label htmlFor=\"complaintEmployeeId\">Працівник *</label>\n                    <select id=\"complaintEmployeeId\" className=\"form-input\" value={form.employeeId} onChange={event => setForm(current => ({ ...current, employeeId: event.target.value }))} disabled={isLoading || isSaving}>\n                        <option value=\"\">— Оберіть працівника —</option>\n                        {employees.map(employee => (\n                            <option key={employee.id} value={employee.id}>\n                                {employee.last_name} {employee.first_name}\n                            </option>\n                        ))}\n                    </select>\n                </div>\n                <div className=\"form-group\">\n                    <label htmlFor=\"complaintDate\">Дата скарги *</label>\n                    <input id=\"complaintDate\" type=\"date\" className=\"form-input\" value={form.complaintDate",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/ComplaintModal.jsx",
+        "start": 166,
+        "end": 190,
+        "startLoc": {
+          "line": 166,
+          "column": 14,
+          "position": 1558
+        },
+        "endLoc": {
+          "line": 190,
+          "column": 14,
+          "position": 1854
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/FeedbackModal.jsx",
+        "start": 152,
+        "end": 186,
+        "startLoc": {
+          "line": 152,
+          "column": 16,
+          "position": 1260
+        },
+        "endLoc": {
+          "line": 186,
+          "column": 11,
+          "position": 1549
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 9,
+      "fragment": "));\n            } catch (error) {\n                if (isAbortedLoad(error, signal)) return;\n                if (error?.status === 401) {\n                    onClose();\n                    handleUnauthorized(error.message || 'Сесію завершено. Увійдіть повторно.');\n                    return;\n                }\n                failWithError(error, 'Помилка завантаження працівників'",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/ComplaintModal.jsx",
+        "start": 96,
+        "end": 104,
+        "startLoc": {
+          "line": 96,
+          "column": 2,
+          "position": 981
+        },
+        "endLoc": {
+          "line": 104,
+          "column": 35,
+          "position": 1060
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/FeedbackModal.jsx",
+        "start": 89,
+        "end": 97,
+        "startLoc": {
+          "line": 89,
+          "column": 9,
+          "position": 796
+        },
+        "endLoc": {
+          "line": 97,
+          "column": 39,
+          "position": 875
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 9,
+      "fragment": "import { useMemo, useState } from 'react';\nimport { API, fetchJSON } from '../api.js';\nimport { useAppActions } from '../appContext.jsx';\nimport { isAbortedLoad, useAbortableLoadEffect } from '../hooks/useAbortableLoadEffect.js';\nimport { useAsyncStatus } from '../hooks/useAsyncStatus.js';\nimport { formatDate } from '../uiUtils.js';\nimport PageStateBoundary from './PageStateBoundary.jsx';\n\nexport default function AuditLogPage",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/AuditLogPage.jsx",
+        "start": 1,
+        "end": 9,
+        "startLoc": {
+          "line": 1,
+          "column": 1,
+          "position": 0
+        },
+        "endLoc": {
+          "line": 9,
+          "column": 13,
+          "position": 103
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/CompliancePage.jsx",
+        "start": 1,
+        "end": 9,
+        "startLoc": {
+          "line": 1,
+          "column": 1,
+          "position": 0
+        },
+        "endLoc": {
+          "line": 9,
+          "column": 17,
+          "position": 100
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 9,
+      "fragment": "(Array.isArray(data) ? data : []);\n        }\n      } catch (error) {\n        if (isAbortedLoad(error, signal)) return;\n        if (error?.status === 401) {\n          handleUnauthorized(error.message || 'Сесію завершено. Увійдіть повторно.');\n          return;\n        }\n        failWithError(error, 'Помилка завантаження журналу аудиту'",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/AuditLogPage.jsx",
+        "start": 35,
+        "end": 43,
+        "startLoc": {
+          "line": 35,
+          "column": 8,
+          "position": 420
+        },
+        "endLoc": {
+          "line": 43,
+          "column": 38,
+          "position": 511
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/OrganizationPage.jsx",
+        "start": 57,
+        "end": 39,
+        "startLoc": {
+          "line": 57,
+          "column": 11,
+          "position": 429
+        },
+        "endLoc": {
+          "line": 39,
+          "column": 41,
+          "position": 448
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 10,
+      "fragment": ">\n\n        <div className=\"employees-table-shell\">\n          <table className=\"data-table\">\n            <thead>\n              <tr>\n                <th>Час</th>\n                <th>Дія</th>\n                <th>Сутність</th>\n                <th>Назва сутності",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/components/AuditLogPage.jsx",
+        "start": 153,
+        "end": 162,
+        "startLoc": {
+          "line": 153,
+          "column": 4,
+          "position": 1524
+        },
+        "endLoc": {
+          "line": 162,
+          "column": 9,
+          "position": 1592
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/CompliancePage.jsx",
+        "start": 113,
+        "end": 116,
+        "startLoc": {
+          "line": 113,
+          "column": 2,
+          "position": 1898
+        },
+        "endLoc": {
+          "line": 116,
+          "column": 3,
+          "position": 1954
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 7,
+      "fragment": "export function getTodayInputValue() {\n    const now = new Date();\n    const localNow = new Date(now.getTime() - now.getTimezoneOffset() * 60000);\n    return localNow.toISOString().split('T')[0];\n}\n\nexport function nextDisplayOrder",
+      "tokens": 0,
+      "firstFile": {
+        "name": "frontend/src/developmentOnboardingFormUtils.js",
+        "start": 1,
+        "end": 7,
+        "startLoc": {
+          "line": 1,
+          "column": 1,
+          "position": 0
+        },
+        "endLoc": {
+          "line": 7,
+          "column": 17,
+          "position": 80
+        }
+      },
+      "secondFile": {
+        "name": "frontend/src/components/employeeModal/formUtils.js",
+        "start": 3,
+        "end": 9,
+        "startLoc": {
+          "line": 3,
+          "column": 1,
+          "position": 17
+        },
+        "endLoc": {
+          "line": 9,
+          "column": 16,
+          "position": 97
+        }
+      }
+    }
+  ]
+}

@@ -38,6 +38,15 @@ describe('uiUtils', () => {
             expect(Number.isNaN(valid?.getTime() ?? Number.NaN)).toBe(false);
             expect(invalid).toBeNull();
         });
+
+        it('rejects impossible calendar dates instead of normalizing them', () => {
+            expect(parseDateValue('2026-04-31')).toBeNull();
+            expect(parseDateValue('2026-04-31Z')).toBeNull();
+            expect(parseDateValue('2026-04-31T12:30:00Z')).toBeNull();
+            expect(parseDateValue('2026-02-29Z')).toBeNull();
+            expect(formatDate('2026-02-29')).toBe('—');
+            expect(formatDate('2026-04-31Z')).toBe('—');
+        });
     });
 
     describe('getErrorMessage', () => {

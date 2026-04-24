@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { API, fetchJSON } from '../api.js';
+import { fetchJSON } from '../api.js';
+import { ENDPOINTS } from '../app/endpoints.js';
 
 export function useSessionController({
     currentUserRef,
@@ -48,7 +49,7 @@ export function useSessionController({
 
         async function bootstrapSession() {
             try {
-                const user = await fetchJSON(`${API}/api/auth/me`, { suppressAuthRedirect: true });
+                const user = await fetchJSON(ENDPOINTS.auth.me, { suppressAuthRedirect: true });
                 if (disposed) return;
 
                 currentUserRef.current = user;
@@ -83,7 +84,7 @@ export function useSessionController({
         setLoginError('');
 
         try {
-            const data = await fetchJSON(`${API}/api/auth/login`, {
+            const data = await fetchJSON(ENDPOINTS.auth.login, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -115,7 +116,7 @@ export function useSessionController({
     async function handleLogout() {
         setIsSubmitting(true);
         try {
-            await fetchJSON(`${API}/api/auth/logout`, {
+            await fetchJSON(ENDPOINTS.auth.logout, {
                 method: 'POST',
                 suppressAuthRedirect: true
             });

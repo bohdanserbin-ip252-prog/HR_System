@@ -1,0 +1,146 @@
+@layer components {
+    .skills-group {
+        @apply mb-6;
+    }
+
+    .profile-info-grid {
+        @apply grid gap-5;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .profile-info-grid-full {
+        grid-column: span 2 / span 2;
+    }
+
+    .skills-group-label {
+        @apply mb-3 text-xs font-bold uppercase tracking-[1px] text-on-surface-variant;
+    }
+
+    .skills-tags {
+        @apply flex flex-wrap gap-2.5;
+    }
+
+    .skill-tag {
+        @apply rounded-md px-4 py-2 text-[13px] font-medium;
+    }
+
+    .skill-tag.primary {
+        @apply bg-primary-container text-on-primary-container shadow-sm;
+    }
+
+    .skill-tag.secondary {
+        @apply bg-surface-container-highest text-on-surface;
+    }
+
+    .profile-timeline {
+        @apply relative ml-4 border-l-2 border-l-surface-container-highest pb-4;
+    }
+
+    .timeline-item {
+        @apply relative mb-10 pl-9;
+    }
+
+    .timeline-item:last-child {
+        @apply mb-0;
+    }
+
+    .timeline-node {
+        @apply absolute left-[-11px] top-1 h-5 w-5 rounded-full border-4 border-surface bg-primary shadow-sm;
+    }
+
+    .timeline-node.past {
+        @apply left-[-9px] h-4 w-4 border-2 bg-surface-container-highest;
+    }
+
+    .timeline-card {
+        @apply rounded-xl p-5 shadow-sm;
+    }
+
+    .timeline-card.current {
+        @apply bg-surface-container-lowest;
+    }
+
+    .timeline-card.past {
+        @apply bg-surface-container-low;
+    }
+
+    .timeline-card-head {
+        @apply mb-1.5 flex flex-wrap items-center justify-between gap-2;
+    }
+
+    .timeline-card-head h3 {
+        @apply font-headline text-[17px] font-bold;
+    }
+
+    .timeline-card-head .date {
+        @apply text-[13px] font-medium text-primary;
+    }
+
+    .timeline-card-head .date.past-date {
+        @apply text-on-surface-variant;
+    }
+
+    .timeline-card .team-label {
+        @apply mb-3 text-[13px] text-on-surface-variant;
+    }
+
+    .timeline-achievements {
+        @apply list-none;
+    }
+
+    .timeline-achievements li {
+        @apply mb-2 flex gap-2 text-sm;
+    }
+
+    .timeline-achievements li .material-symbols-outlined {
+        @apply mt-0.5 shrink-0 text-[18px] text-primary;
+    }
+
+    .timeline-join {
+        @apply flex items-center gap-4 rounded-xl bg-surface-container-low p-5;
+    }
+
+    .timeline-join-icon {
+        @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-primary-container text-on-primary-container;
+    }
+
+    .timeline-join h3 {
+        @apply font-headline text-[15px] font-bold;
+    }
+
+    .timeline-join p {
+        @apply text-[13px] text-on-surface-variant;
+    }
+
+    .profile-focus-grid {
+        @apply grid grid-cols-2 gap-5;
+    }
+
+    .focus-card {
+        @apply flex flex-col rounded-xl border border-[rgba(192,196,195,0.15)] bg-surface-container-lowest p-6 shadow-sm;
+    }
+
+    .focus-card-head {
+        @apply mb-3.5 flex items-center gap-3;
+    }
+
+    .focus-card-icon {
+        @apply flex h-10 w-10 items-center justify-center rounded-md;
+    }
+
+    .focus-card-icon.green {
+        @apply bg-tertiary-container text-on-primary-container;
+    }
+
+    .focus-card-icon.teal {
+        @apply bg-secondary-container text-on-secondary-container;
+    }
+
+    .focus-card-head h3 {
+        @apply font-headline text-base font-bold leading-[1.3];
+    }
+
+    .focus-card p {
+        @apply mb-4 flex-1 text-[13px] leading-[1.5] text-on-surface-variant;
+    }
+}

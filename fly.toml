@@ -5,6 +5,7 @@ primary_region = "ams"
   PORT = "3000"
   HR_SYSTEM_DB_PATH = "/data/hr_system.db"
   HR_SYSTEM_FRONTEND_DIST = "/app/frontend/dist"
+  HR_SYSTEM_COOKIE_SECURE = "true"
 
 [http_service]
   internal_port = 3000

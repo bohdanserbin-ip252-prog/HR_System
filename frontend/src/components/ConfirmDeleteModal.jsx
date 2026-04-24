@@ -45,7 +45,7 @@ export default function ConfirmDeleteModal({
         <ModalFrame
             modalId="confirmModal"
             title={title || 'Підтвердження'}
-            width="400px"
+            size="compact"
             isOpen={isOpen}
             onClose={() => {
                 if (isSubmitting) return;

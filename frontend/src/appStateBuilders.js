@@ -30,6 +30,12 @@ export const CLOSED_DEVELOPMENT_ONBOARDING_MODAL_STATE = {
     entityId: null
 };
 
+export const CLOSED_COMPLAINT_MODAL_STATE = {
+    isOpen: false,
+    mode: 'create',
+    complaintId: null
+};
+
 export function createDashboardData() {
     return {
         stats: null
@@ -60,6 +66,18 @@ export function createOnboardingData() {
     };
 }
 
+export function createComplaintsData() {
+    return {
+        complaints: []
+    };
+}
+
+export function createActivityFeedData() {
+    return {
+        items: []
+    };
+}
+
 export function createPageSnapshot(data, overrides = {}) {
     return {
         status: 'idle',
@@ -81,4 +99,12 @@ export function createDevelopmentSnapshot(overrides = {}) {
 
 export function createOnboardingSnapshot(overrides = {}) {
     return createPageSnapshot(createOnboardingData(), overrides);
+}
+
+export function createComplaintsSnapshot(overrides = {}) {
+    return createPageSnapshot(createComplaintsData(), overrides);
+}
+
+export function createActivityFeedSnapshot(overrides = {}) {
+    return createPageSnapshot(createActivityFeedData(), overrides);
 }

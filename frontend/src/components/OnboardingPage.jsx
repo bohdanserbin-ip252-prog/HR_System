@@ -41,7 +41,6 @@ function getStepperItems(percent) {
 
 export default function OnboardingPage({ currentUser, isActive, snapshot }) {
     const { confirmDelete, editTask, openTaskCreate } = useAppActions();
-
     const isAdmin = currentUser?.role === 'admin';
     const data = snapshot?.data || {};
     const team = data.team || {};
@@ -54,10 +53,9 @@ export default function OnboardingPage({ currentUser, isActive, snapshot }) {
     const completedCount = Number(progress.completedCount || 0);
     const totalTaskCount = Number(progress.totalCount || tasks.length);
     const hasAnyData = avatars.length > 0 || tasks.length > 0 || totalCount > 0 || buddy !== null;
-
     const stepperItems = useMemo(() => getStepperItems(percent), [percent]);
 
-    const content = (
+    return (
         <>
             <div className="page-header">
                 <div className="onboarding-header">
@@ -67,11 +65,17 @@ export default function OnboardingPage({ currentUser, isActive, snapshot }) {
                         <p>Стан адаптації відображається лише за даними, що зберігаються в базі.</p>
                     </div>
                     <div className="onboarding-avatars">
-                        {avatars.map(employee => (
-                            <div key={employee.id} className="ob-avatar" style={{ background: getAvatarColor(employee.last_name) }}>
-                                {`${employee.first_name?.[0] || ''}${employee.last_name?.[0] || ''}` || '—'}
-                            </div>
-                        ))}
+                        {avatars.map(employee => {
+                            return (
+                                <div
+                                    key={employee.id}
+                                    className="ob-avatar"
+                                    style={{ background: getAvatarColor(employee.last_name) }}
+                                >
+                                    {`${employee.first_name?.[0] || ''}${employee.last_name?.[0] || ''}` || '—'}
+                                </div>
+                            );
+                        })}
                         {Math.max(totalCount - avatars.length, 0) > 0 ? (
                             <div className="ob-avatar extra">+{Math.max(totalCount - avatars.length, 0)}</div>
                         ) : null}
@@ -109,7 +113,7 @@ export default function OnboardingPage({ currentUser, isActive, snapshot }) {
                         </div>
                     </div>
 
-                    <div className="ob-bento">
+                    <div className="ob-bento onboarding-content">
                         <div className="ob-tasks">
                             <ActionHeader
                                 containerClassName="ob-tasks-header"
@@ -131,7 +135,10 @@ export default function OnboardingPage({ currentUser, isActive, snapshot }) {
                                     else if (task.dueDate) actionLabel = `До ${formatDate(task.dueDate)}`;
 
                                     return (
-                                        <div key={task.id} className={`ob-task ${task.status || ''}`}>
+                                        <div
+                                            key={task.id}
+                                            className={`ob-task ${task.status || ''}`.trim()}
+                                        >
                                             <div className="ob-task-icon">
                                                 <span className="material-symbols-outlined" style={task.status === 'active' ? { fontVariationSettings: "'FILL' 1" } : undefined}>{task.icon || 'task_alt'}</span>
                                             </div>
@@ -201,6 +208,4 @@ export default function OnboardingPage({ currentUser, isActive, snapshot }) {
             </PageStateBoundary>
         </>
     );
-
-    return content;
 }

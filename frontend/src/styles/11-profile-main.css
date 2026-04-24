@@ -1,0 +1,117 @@
+@layer components {
+    #page-profile.active {
+        @apply block;
+    }
+
+    .profile-layout {
+        @apply flex;
+        min-height: calc(100vh - var(--header-height) - 32px);
+        margin: -32px -40px -48px;
+    }
+
+    .profile-sidebar {
+        @apply flex w-80 shrink-0 flex-col overflow-y-auto border-r border-r-surface-container-highest bg-surface-container-low p-6;
+    }
+
+    .profile-back {
+        @apply mb-4;
+    }
+
+    .profile-identity {
+        @apply flex flex-col items-center px-0 pb-6 pt-4 text-center;
+    }
+
+    .profile-avatar-wrap {
+        @apply relative mb-5;
+    }
+
+    .profile-avatar {
+        @apply flex h-[140px] w-[140px] items-center justify-center rounded-full border-4 border-surface-container-lowest font-headline text-5xl font-extrabold text-white shadow-md;
+        background: linear-gradient(135deg, var(--primary), var(--emerald-600));
+    }
+
+    .profile-status-dot {
+        @apply absolute bottom-2 right-2 h-5 w-5 rounded-full border-4 border-surface-container-lowest bg-[#00ec3b];
+    }
+
+    .profile-status-dot.on_leave {
+        @apply bg-amber-500;
+    }
+
+    .profile-status-dot.fired {
+        @apply bg-red-500;
+    }
+
+    .profile-name {
+        @apply mb-1 font-headline text-[26px] font-bold text-on-surface;
+    }
+
+    .profile-position {
+        @apply mb-1 text-base font-medium text-primary;
+    }
+
+    .profile-location {
+        @apply mb-2 flex items-center gap-1 text-[13px] text-on-surface-variant;
+    }
+
+    .profile-actions {
+        @apply mb-6 flex w-full gap-2.5;
+    }
+
+    .profile-meta-cards {
+        @apply flex w-full flex-col gap-3;
+    }
+
+    .profile-meta-card {
+        @apply flex items-start gap-3 rounded-xl bg-surface-container-lowest p-3.5 shadow-sm;
+    }
+
+    .profile-meta-icon {
+        @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-surface-container text-on-surface;
+    }
+
+    .profile-meta-label {
+        @apply mb-0.5 block text-[10px] font-bold uppercase tracking-[1px] text-on-surface-variant;
+    }
+
+    .profile-meta-value {
+        @apply block text-sm font-medium text-on-surface;
+    }
+
+    .profile-meta-sub {
+        @apply mt-0.5 block text-[11px] text-on-surface-variant;
+    }
+
+    .profile-main {
+        @apply relative flex-1 overflow-y-auto bg-surface;
+    }
+
+    .profile-hero-gradient {
+        @apply absolute left-0 right-0 top-0 h-[180px] w-full opacity-[0.18];
+        background: linear-gradient(135deg, var(--primary), var(--primary-container));
+    }
+
+    .profile-main-inner {
+        @apply relative z-[1] mx-auto max-w-[800px] px-10 pb-12 pt-12;
+    }
+
+    .profile-section {
+        @apply mb-14;
+    }
+
+    .profile-section-title {
+        @apply mb-6 flex items-center gap-2.5 font-headline text-[22px] font-bold text-on-surface;
+    }
+
+    .profile-section-title .material-symbols-outlined {
+        @apply text-primary;
+    }
+
+    .profile-section-head {
+        @apply mb-8 flex items-center justify-between gap-3;
+    }
+
+    .profile-section-head .profile-section-title {
+        @apply mb-0;
+    }
+}

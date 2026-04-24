@@ -8,6 +8,7 @@ import { AppContextProvider, useAppActions, useAppState } from '../appContext.js
 afterEach(() => {
     vi.restoreAllMocks();
     vi.unstubAllGlobals();
+    vi.unstubAllEnvs();
 });
 
 function mockFetchResponse({
@@ -48,10 +49,33 @@ describe('api.js', () => {
         vi.stubGlobal('fetch', fetchMock);
 
         await expect(fetchJSON('/api/test', { method: 'POST', body: 'demo' })).resolves.toEqual(payload);
-        expect(fetchMock).toHaveBeenCalledWith('/api/test', {
+        expect(fetchMock).toHaveBeenCalledWith('/api/v2/test', {
             credentials: 'same-origin',
             method: 'POST',
             body: 'demo',
+        });
+    });
+
+    it('sends include credentials when a cross-origin API origin is configured', async () => {
+        vi.resetModules();
+        vi.stubEnv('VITE_API_ORIGIN', 'https://api.example.com/');
+        const crossOriginApi = await import('../api.js?cross-origin');
+        const payload = { ok: true };
+        const fetchMock = vi.fn().mockResolvedValue(
+            mockFetchResponse({
+                ok: true,
+                status: 200,
+                contentType: 'application/json',
+                jsonValue: payload,
+                textValue: '',
+            }),
+        );
+        vi.stubGlobal('fetch', fetchMock);
+
+        await expect(crossOriginApi.fetchJSON(`${crossOriginApi.API}/api/test`)).resolves.toEqual(payload);
+        expect(crossOriginApi.API_ORIGIN).toBe('https://api.example.com');
+        expect(fetchMock).toHaveBeenCalledWith('https://api.example.com/api/v2/test', {
+            credentials: 'include',
         });
     });
 

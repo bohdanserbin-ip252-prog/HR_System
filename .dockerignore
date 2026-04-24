@@ -7,4 +7,11 @@ backend/*.db-shm
 backend/*.db-wal
 .git
 .DS_Store
+.env
+.env.*
+.codex
+.fly
 *.log
+.playwright-data
+playwright-report
+test-results

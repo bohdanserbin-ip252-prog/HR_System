@@ -2,10 +2,14 @@ node_modules/
 frontend/node_modules/
 frontend/dist/
 backend/target/
+backend/*.db
 backend/*.db-shm
 backend/*.db-wal
 .DS_Store
 .env
 *.log
+.playwright-data/
+playwright-report/
+test-results/
 .codex
 .fly

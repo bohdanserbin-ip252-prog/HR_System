@@ -20,7 +20,7 @@ describe('FormErrorMessage', () => {
 });
 
 describe('PageStateBoundary', () => {
-    it('renders loading state before any other state', () => {
+    it('renders skeleton card for loading state by default', () => {
         render(
             <PageStateBoundary
                 loading={{ icon: 'hourglass_top', title: 'Loading', description: 'Loading desc' }}
@@ -31,8 +31,22 @@ describe('PageStateBoundary', () => {
             </PageStateBoundary>
         );
 
-        expect(screen.getByText('Loading')).toBeInTheDocument();
+        expect(screen.getByLabelText('Завантаження')).toBeInTheDocument();
         expect(screen.queryByText('Error')).not.toBeInTheDocument();
+        expect(screen.queryByText('children')).not.toBeInTheDocument();
+    });
+
+    it('renders skeleton table for loading state on table pages', () => {
+        render(
+            <PageStateBoundary
+                loading={{ icon: 'hourglass_top', title: 'Loading', description: 'Loading desc' }}
+                pageName="employees"
+            >
+                <div>children</div>
+            </PageStateBoundary>
+        );
+
+        expect(screen.getByLabelText('Завантаження таблиці')).toBeInTheDocument();
         expect(screen.queryByText('children')).not.toBeInTheDocument();
     });
 

@@ -1,13 +1,14 @@
 import { useAppActions } from '../appContext.jsx';
-import OrganizationPage from './OrganizationPage.jsx';
+import { ENDPOINTS } from '../app/endpoints.js';
+import OrganizationEntityTabShell from './OrganizationEntityTabShell.jsx';
 import { formatMoney } from '../uiUtils.js';
 
 export default function PositionsPage({ currentUser, isActive, refreshKey = 0 }) {
     const { confirmDelete, editPosition, openPositionCreate } = useAppActions();
 
     return (
-        <OrganizationPage
-            endpoint="/api/positions"
+        <OrganizationEntityTabShell
+            endpoint={ENDPOINTS.positions}
             title="Посади підприємства"
             description="Каталог посад та діапазони заробітної плати."
             addButtonLabel="Додати посаду"

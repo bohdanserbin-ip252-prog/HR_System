@@ -1,6 +1,9 @@
 use axum::{
     body::Body,
-    http::{Method, Request, StatusCode, header::{CONTENT_TYPE, COOKIE, SET_COOKIE}},
+    http::{
+        Method, Request, StatusCode,
+        header::{CONTENT_TYPE, COOKIE, SET_COOKIE},
+    },
 };
 use hr_system_backend::{AppState, build_app, initialize_database};
 use http_body_util::BodyExt;
@@ -59,7 +62,13 @@ async fn send_json_with_cookie(
         serde_json::from_slice(&bytes).expect("valid json")
     };
 
-    (status, body, set_cookie)
+    let normalized_body = if status.is_success() {
+        body.get("data").cloned().unwrap_or(body)
+    } else {
+        body
+    };
+
+    (status, normalized_body, set_cookie)
 }
 
 #[tokio::test]
@@ -74,7 +83,7 @@ async fn smoke_checks_pass() {
     let (login_status, login_body, admin_cookie) = send_json(
         &app,
         Method::POST,
-        "/api/auth/login",
+        "/api/v2/auth/login",
         Some(json!({
             "username": " admin ",
             "password": "admin123"
@@ -85,24 +94,41 @@ async fn smoke_checks_pass() {
     assert_eq!(login_body["user"]["username"], "admin");
     let admin_cookie = admin_cookie.expect("admin session cookie");
 
-    let (me_status, me_body, _) =
-        send_json_with_cookie(&app, Method::GET, "/api/auth/me", None, Some(&admin_cookie)).await;
+    let (me_status, me_body, _) = send_json_with_cookie(
+        &app,
+        Method::GET,
+        "/api/v2/auth/me",
+        None,
+        Some(&admin_cookie),
+    )
+    .await;
     assert_eq!(me_status, StatusCode::OK);
     assert_eq!(me_body["role"], "admin");
 
-    let (stats_status, stats_body, _) =
-        send_json_with_cookie(&app, Method::GET, "/api/stats", None, Some(&admin_cookie)).await;
+    let (stats_status, stats_body, _) = send_json_with_cookie(
+        &app,
+        Method::GET,
+        "/api/v2/stats",
+        None,
+        Some(&admin_cookie),
+    )
+    .await;
     assert_eq!(stats_status, StatusCode::OK);
     assert!(stats_body["totalEmployees"].is_number());
 
-    let (development_status, development_body, _) =
-        send_json_with_cookie(&app, Method::GET, "/api/development", None, Some(&admin_cookie))
-            .await;
+    let (development_status, development_body, _) = send_json_with_cookie(
+        &app,
+        Method::GET,
+        "/api/v2/development",
+        None,
+        Some(&admin_cookie),
+    )
+    .await;
     assert_eq!(development_status, StatusCode::OK);
     assert!(
         development_body["goals"]
             .as_array()
-            .map_or(false, |goals| !goals.is_empty())
+            .is_some_and(|goals| !goals.is_empty())
     );
     let first_goal = development_body["goals"]
         .as_array()
@@ -114,7 +140,7 @@ async fn smoke_checks_pass() {
     assert!(
         development_body["feedback"]
             .as_array()
-            .map_or(false, |feedback| !feedback.is_empty())
+            .is_some_and(|feedback| !feedback.is_empty())
     );
     let first_feedback = development_body["feedback"]
         .as_array()
@@ -126,18 +152,23 @@ async fn smoke_checks_pass() {
     assert!(
         development_body["meetings"]
             .as_array()
-            .map_or(false, |meetings| !meetings.is_empty())
+            .is_some_and(|meetings| !meetings.is_empty())
     );
 
-    let (onboarding_status, onboarding_body, _) =
-        send_json_with_cookie(&app, Method::GET, "/api/onboarding", None, Some(&admin_cookie))
-            .await;
+    let (onboarding_status, onboarding_body, _) = send_json_with_cookie(
+        &app,
+        Method::GET,
+        "/api/v2/onboarding",
+        None,
+        Some(&admin_cookie),
+    )
+    .await;
     assert_eq!(onboarding_status, StatusCode::OK);
-    assert_eq!(onboarding_body["team"]["totalCount"], 6);
+    assert_eq!(onboarding_body["team"]["totalCount"], 34);
     assert!(
         onboarding_body["tasks"]
             .as_array()
-            .map_or(false, |tasks| !tasks.is_empty())
+            .is_some_and(|tasks| !tasks.is_empty())
     );
     let first_task = onboarding_body["tasks"]
         .as_array()
@@ -152,7 +183,7 @@ async fn smoke_checks_pass() {
     let (create_goal_status, create_goal_body, _) = send_json_with_cookie(
         &app,
         Method::POST,
-        "/api/development/goals",
+        "/api/v2/development/goals",
         Some(json!({
             "icon": "insights",
             "title": "Нова ціль розвитку",
@@ -171,7 +202,7 @@ async fn smoke_checks_pass() {
     let (move_goal_status, move_goal_body, _) = send_json_with_cookie(
         &app,
         Method::POST,
-        &format!("/api/development/goals/{created_goal_id}/move"),
+        &format!("/api/v2/development/goals/{created_goal_id}/move"),
         Some(json!({
             "direction": "up"
         })),
@@ -181,20 +212,31 @@ async fn smoke_checks_pass() {
     assert_eq!(move_goal_status, StatusCode::OK);
     assert_eq!(move_goal_body["success"], true);
 
-    let (reordered_development_status, reordered_development_body, _) =
-        send_json_with_cookie(&app, Method::GET, "/api/development", None, Some(&admin_cookie))
-            .await;
+    let (reordered_development_status, reordered_development_body, _) = send_json_with_cookie(
+        &app,
+        Method::GET,
+        "/api/v2/development",
+        None,
+        Some(&admin_cookie),
+    )
+    .await;
     assert_eq!(reordered_development_status, StatusCode::OK);
     let created_goal_position = reordered_development_body["goals"]
         .as_array()
         .and_then(|goals| goals.iter().position(|goal| goal["id"] == created_goal_id))
         .expect("created goal in reordered list");
-    assert!(created_goal_position + 1 < reordered_development_body["goals"].as_array().expect("goal list").len());
+    assert!(
+        created_goal_position + 1
+            < reordered_development_body["goals"]
+                .as_array()
+                .expect("goal list")
+                .len()
+    );
 
     let (update_goal_status, update_goal_body, _) = send_json_with_cookie(
         &app,
         Method::PUT,
-        &format!("/api/development/goals/{created_goal_id}"),
+        &format!("/api/v2/development/goals/{created_goal_id}"),
         Some(json!({
             "icon": "insights",
             "title": "Нова ціль розвитку",
@@ -213,7 +255,7 @@ async fn smoke_checks_pass() {
     let (delete_goal_status, delete_goal_body, _) = send_json_with_cookie(
         &app,
         Method::DELETE,
-        &format!("/api/development/goals/{created_goal_id}"),
+        &format!("/api/v2/development/goals/{created_goal_id}"),
         None,
         Some(&admin_cookie),
     )
@@ -224,7 +266,7 @@ async fn smoke_checks_pass() {
     let (create_feedback_status, create_feedback_body, _) = send_json_with_cookie(
         &app,
         Method::POST,
-        "/api/development/feedback",
+        "/api/v2/development/feedback",
         Some(json!({
             "employee_id": 1,
             "feedback_at": "2026-03-31",
@@ -240,7 +282,7 @@ async fn smoke_checks_pass() {
     let (update_feedback_status, update_feedback_body, _) = send_json_with_cookie(
         &app,
         Method::PUT,
-        &format!("/api/development/feedback/{created_feedback_id}"),
+        &format!("/api/v2/development/feedback/{created_feedback_id}"),
         Some(json!({
             "employee_id": 1,
             "feedback_at": "2026-03-31",
@@ -254,13 +296,13 @@ async fn smoke_checks_pass() {
     assert!(
         update_feedback_body["text"]
             .as_str()
-            .map_or(false, |text| text.contains("менеджеру"))
+            .is_some_and(|text| text.contains("менеджеру"))
     );
 
     let (delete_feedback_status, delete_feedback_body, _) = send_json_with_cookie(
         &app,
         Method::DELETE,
-        &format!("/api/development/feedback/{created_feedback_id}"),
+        &format!("/api/v2/development/feedback/{created_feedback_id}"),
         None,
         Some(&admin_cookie),
     )
@@ -271,7 +313,7 @@ async fn smoke_checks_pass() {
     let (create_meeting_status, create_meeting_body, _) = send_json_with_cookie(
         &app,
         Method::POST,
-        "/api/development/meetings",
+        "/api/v2/development/meetings",
         Some(json!({
             "date": "2026-04-09",
             "title": "Планова 1:1 розмова",
@@ -287,7 +329,7 @@ async fn smoke_checks_pass() {
     let (update_meeting_status, update_meeting_body, _) = send_json_with_cookie(
         &app,
         Method::PUT,
-        &format!("/api/development/meetings/{created_meeting_id}"),
+        &format!("/api/v2/development/meetings/{created_meeting_id}"),
         Some(json!({
             "date": "2026-04-10",
             "title": "Планова 1:1 розмова",
@@ -303,7 +345,7 @@ async fn smoke_checks_pass() {
     let (delete_meeting_status, delete_meeting_body, _) = send_json_with_cookie(
         &app,
         Method::DELETE,
-        &format!("/api/development/meetings/{created_meeting_id}"),
+        &format!("/api/v2/development/meetings/{created_meeting_id}"),
         None,
         Some(&admin_cookie),
     )
@@ -314,7 +356,7 @@ async fn smoke_checks_pass() {
     let (create_task_status, create_task_body, _) = send_json_with_cookie(
         &app,
         Method::POST,
-        "/api/onboarding/tasks",
+        "/api/v2/onboarding/tasks",
         Some(json!({
             "status": "pending",
             "icon": "bookmark",
@@ -333,7 +375,7 @@ async fn smoke_checks_pass() {
     let (update_task_status, update_task_body, _) = send_json_with_cookie(
         &app,
         Method::PUT,
-        &format!("/api/onboarding/tasks/{created_task_id}"),
+        &format!("/api/v2/onboarding/tasks/{created_task_id}"),
         Some(json!({
             "status": "active",
             "icon": "bookmark",
@@ -352,7 +394,7 @@ async fn smoke_checks_pass() {
     let (delete_task_status, delete_task_body, _) = send_json_with_cookie(
         &app,
         Method::DELETE,
-        &format!("/api/onboarding/tasks/{created_task_id}"),
+        &format!("/api/v2/onboarding/tasks/{created_task_id}"),
         None,
         Some(&admin_cookie),
     )
@@ -363,7 +405,7 @@ async fn smoke_checks_pass() {
     let (invalid_employee_status, _, _) = send_json_with_cookie(
         &app,
         Method::POST,
-        "/api/employees",
+        "/api/v2/employees",
         Some(json!({
             "first_name": "Test",
             "last_name": "User",
@@ -378,7 +420,7 @@ async fn smoke_checks_pass() {
     let (invalid_position_status, _, _) = send_json_with_cookie(
         &app,
         Method::POST,
-        "/api/positions",
+        "/api/v2/positions",
         Some(json!({
             "title": "Broken Range",
             "min_salary": 5000,
@@ -392,7 +434,7 @@ async fn smoke_checks_pass() {
     let (missing_delete_status, _, _) = send_json_with_cookie(
         &app,
         Method::DELETE,
-        "/api/employees/999999",
+        "/api/v2/employees/999999",
         None,
         Some(&admin_cookie),
     )
@@ -402,7 +444,7 @@ async fn smoke_checks_pass() {
     let (missing_update_status, _, _) = send_json_with_cookie(
         &app,
         Method::PUT,
-        "/api/positions/999999",
+        "/api/v2/positions/999999",
         Some(json!({
             "title": "Ghost",
             "min_salary": 1000,
@@ -416,7 +458,7 @@ async fn smoke_checks_pass() {
     let (user_login_status, user_login_body, user_cookie) = send_json(
         &app,
         Method::POST,
-        "/api/auth/login",
+        "/api/v2/auth/login",
         Some(json!({
             "username": " viewer ",
             "password": "viewer123"
@@ -430,7 +472,7 @@ async fn smoke_checks_pass() {
     let (forbidden_create_status, _, _) = send_json_with_cookie(
         &app,
         Method::POST,
-        "/api/departments",
+        "/api/v2/departments",
         Some(json!({
             "name": "Blocked",
             "description": "Should fail"
@@ -443,7 +485,7 @@ async fn smoke_checks_pass() {
     let (forbidden_task_status, _, _) = send_json_with_cookie(
         &app,
         Method::POST,
-        "/api/onboarding/tasks",
+        "/api/v2/onboarding/tasks",
         Some(json!({
             "status": "pending",
             "icon": "checklist",
@@ -458,7 +500,7 @@ async fn smoke_checks_pass() {
     let (forbidden_move_status, _, _) = send_json_with_cookie(
         &app,
         Method::POST,
-        "/api/onboarding/tasks/1/move",
+        "/api/v2/onboarding/tasks/1/move",
         Some(json!({
             "direction": "down"
         })),
@@ -470,7 +512,7 @@ async fn smoke_checks_pass() {
     let (logout_status, logout_body, _) = send_json_with_cookie(
         &app,
         Method::POST,
-        "/api/auth/logout",
+        "/api/v2/auth/logout",
         None,
         Some(&admin_cookie),
     )
@@ -478,7 +520,13 @@ async fn smoke_checks_pass() {
     assert_eq!(logout_status, StatusCode::OK);
     assert_eq!(logout_body["success"], true);
 
-    let (post_logout_status, _, _) =
-        send_json_with_cookie(&app, Method::GET, "/api/stats", None, Some(&admin_cookie)).await;
+    let (post_logout_status, _, _) = send_json_with_cookie(
+        &app,
+        Method::GET,
+        "/api/v2/stats",
+        None,
+        Some(&admin_cookie),
+    )
+    .await;
     assert_eq!(post_logout_status, StatusCode::UNAUTHORIZED);
 }

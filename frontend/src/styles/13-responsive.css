@@ -1,0 +1,210 @@
+@layer components {
+    @media (max-width: 1024px) {
+        :root {
+            --page-pad-x: 1.25rem;
+            --page-pad-y: 1.5rem;
+            --fab-offset-x: 1.5rem;
+            --fab-offset-y: 1.5rem;
+        }
+
+        body.sidebar-open {
+            @apply overflow-hidden;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width-drawer);
+            transform: translateX(calc(-1 * var(--sidebar-width-drawer)));
+            box-shadow: var(--shadow-xl);
+        }
+
+        .app-shell--sidebar-open .sidebar,
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-backdrop {
+            @apply block;
+        }
+
+        .main-content {
+            @apply ml-0;
+            padding-left: var(--page-pad-x);
+            padding-right: var(--page-pad-x);
+            padding-top: calc(var(--header-height) + var(--page-pad-y));
+            padding-bottom: calc(var(--page-pad-y) * 1.5);
+        }
+
+        .top-nav {
+            @apply hidden;
+        }
+
+        #menuBtn {
+            @apply flex !important;
+        }
+
+        .dashboard-grid,
+        .ob-bento,
+        .onboarding-content,
+        .dev-grid,
+        .development-content {
+            @apply grid-cols-1;
+        }
+
+        .form-row {
+            @apply grid-cols-1;
+        }
+
+        .dev-hero {
+            @apply px-6 py-7;
+        }
+
+        .profile-layout {
+            @apply m-0 flex-col;
+        }
+
+        .profile-sidebar {
+            @apply w-full border-b border-b-surface-container-highest border-r-0;
+        }
+
+        .profile-main-inner {
+            @apply px-5 pb-8 pt-8;
+        }
+
+        .profile-info-grid {
+            @apply grid-cols-1;
+        }
+
+        .profile-info-grid-full {
+            grid-column: auto;
+        }
+
+        .fab {
+            right: var(--fab-offset-x);
+            bottom: var(--fab-offset-y);
+        }
+
+        .employees-toolbar {
+            @apply gap-2.5 px-5 py-3.5;
+        }
+
+        .grid-cards--organization {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .employees-table-shell {
+            @apply overflow-x-auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .employees-table-view .data-table {
+            min-width: 860px;
+        }
+    }
+
+    @media (max-width: 640px) {
+        :root {
+            --page-pad-x: 1rem;
+            --page-pad-y: 1.25rem;
+            --fab-offset-x: 1rem;
+            --fab-offset-y: 1rem;
+        }
+
+        .main-content {
+            padding-left: var(--page-pad-x);
+            padding-right: var(--page-pad-x);
+        }
+
+        .employees-toolbar {
+            @apply flex-col items-stretch px-4;
+        }
+
+        .page-actions {
+            @apply flex-col items-stretch gap-2.5;
+        }
+
+        .page-actions .btn {
+            @apply w-full justify-center;
+        }
+
+        .employees-toolbar .search-bar {
+            @apply max-w-none;
+        }
+
+        .employees-toolbar .custom-select {
+            @apply w-full min-w-0;
+        }
+
+        .employees-toolbar .employees-mobile-sort {
+            @apply flex w-full flex-col gap-1.5;
+        }
+
+        .employees-table-view {
+            @apply hidden;
+        }
+
+        .employees-card-view {
+            @apply block;
+        }
+
+        .employee-card-meta {
+            @apply grid-cols-1;
+        }
+
+        .page-header h1 {
+            @apply text-[32px];
+        }
+
+        .mini-stats-row,
+        .hero-stat-metrics,
+        .grid-cards,
+        .grid-cards--organization,
+        .profile-focus-grid {
+            @apply grid-cols-1;
+        }
+
+        .hero-stat-value .big-num {
+            @apply text-[64px];
+        }
+
+        .profile-avatar {
+            @apply h-[100px] w-[100px] text-4xl;
+        }
+
+        .profile-name {
+            @apply text-[22px];
+        }
+
+        .profile-section-head {
+            @apply flex-col items-start;
+        }
+
+        #profileJourneyBadge {
+            @apply self-start;
+        }
+
+        .dev-goal-card,
+        .ob-task {
+            @apply flex-col items-start;
+        }
+
+        .dev-goal-right {
+            @apply w-full justify-between;
+        }
+
+        .ob-task-action {
+            @apply self-start;
+        }
+
+        .ob-step-circle {
+            @apply h-12 w-12;
+        }
+
+        .ob-step-circle.active {
+            outline-width: 4px;
+        }
+
+        .ob-stepper-track {
+            @apply top-6;
+        }
+    }
+}

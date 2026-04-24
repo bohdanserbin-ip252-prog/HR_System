@@ -1,0 +1,116 @@
+.recruitment-card {
+  background: #fff;
+  border: 1px solid rgba(31, 41, 55, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(31, 41, 55, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+}
+
+.recruitment-card.is-busy {
+  opacity: 0.75;
+}
+
+.recruitment-card__title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.recruitment-card__position {
+  color: var(--on-surface-variant);
+  font-size: 13px;
+  margin: 0;
+}
+
+.recruitment-card__contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.recruitment-card__contacts a {
+  color: var(--primary);
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.recruitment-card__contacts a:hover {
+  text-decoration: underline;
+}
+
+.recruitment-card__notes {
+  color: var(--on-surface-variant);
+  font-size: 12px;
+  margin: 0;
+}
+
+.recruitment-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.recruitment-tag {
+  background: rgba(31, 41, 55, 0.07);
+  border-radius: 6px;
+  color: var(--on-surface-variant);
+  font-size: 11px;
+  padding: 2px 8px;
+}
+
+.recruitment-tag--rating {
+  background: rgba(245, 158, 11, 0.14);
+  color: #92400e;
+}
+
+.recruitment-card__actions {
+  display: grid;
+  gap: 6px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.recruitment-action-btn {
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(31, 41, 55, 0.16);
+  border-radius: 8px;
+  color: var(--on-surface);
+  cursor: pointer;
+  display: flex;
+  font-size: 12px;
+  font-weight: 600;
+  gap: 4px;
+  justify-content: center;
+  min-height: 34px;
+  padding: 6px 8px;
+}
+
+.recruitment-action-btn .material-symbols-outlined {
+  font-size: 16px;
+}
+
+.recruitment-action-btn:hover {
+  background: rgba(31, 41, 55, 0.04);
+}
+
+.recruitment-action-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.recruitment-action-btn--danger {
+  color: #b91c1c;
+}
+
+.recruitment-action-btn--primary {
+  color: var(--primary);
+}
+
+@media (max-width: 720px) {
+  .recruitment-card__actions {
+    grid-template-columns: 1fr;
+  }
+}

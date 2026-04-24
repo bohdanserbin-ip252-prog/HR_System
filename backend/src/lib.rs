@@ -1,22 +1,22 @@
 mod auth;
+mod cors;
 mod db;
 mod error;
+mod events;
 mod handlers;
+mod json_schemas;
+mod middleware;
 mod models;
+mod pagination;
+mod routes;
 
-use axum::{
-    Router,
-    routing::{get, get_service, post},
-};
+use axum::{Router, middleware::from_fn, routing::get_service};
 use rusqlite::Connection;
 use std::{
     path::{Path, PathBuf},
     sync::Arc,
 };
-use tower_http::{
-    cors::CorsLayer,
-    services::{ServeDir, ServeFile},
-};
+use tower_http::services::{ServeDir, ServeFile};
 
 pub use db::{default_db_path, default_frontend_dist_dir, initialize_database};
 pub use error::{AppError, AppResult};
@@ -68,97 +68,15 @@ impl AppState {
 }
 
 pub fn build_app(state: AppState) -> Router {
-    let api_router = Router::new()
-        .route("/api/auth/login", post(handlers::login))
-        .route("/api/auth/me", get(handlers::me))
-        .route("/api/auth/logout", post(handlers::logout))
-        .route("/api/stats", get(handlers::stats))
-        .route("/api/development", get(handlers::development))
-        .route(
-            "/api/development/goals",
-            post(handlers::create_development_goal),
-        )
-        .route(
-            "/api/development/goals/{id}",
-            axum::routing::put(handlers::update_development_goal)
-                .delete(handlers::delete_development_goal),
-        )
-        .route(
-            "/api/development/goals/{id}/move",
-            post(handlers::move_development_goal),
-        )
-        .route(
-            "/api/development/feedback",
-            post(handlers::create_development_feedback),
-        )
-        .route(
-            "/api/development/feedback/{id}",
-            axum::routing::put(handlers::update_development_feedback)
-                .delete(handlers::delete_development_feedback),
-        )
-        .route(
-            "/api/development/feedback/{id}/move",
-            post(handlers::move_development_feedback),
-        )
-        .route(
-            "/api/development/meetings",
-            post(handlers::create_development_meeting),
-        )
-        .route(
-            "/api/development/meetings/{id}",
-            axum::routing::put(handlers::update_development_meeting)
-                .delete(handlers::delete_development_meeting),
-        )
-        .route(
-            "/api/development/meetings/{id}/move",
-            post(handlers::move_development_meeting),
-        )
-        .route("/api/onboarding", get(handlers::onboarding))
-        .route("/api/onboarding/tasks", post(handlers::create_onboarding_task))
-        .route(
-            "/api/onboarding/tasks/{id}",
-            axum::routing::put(handlers::update_onboarding_task)
-                .delete(handlers::delete_onboarding_task),
-        )
-        .route(
-            "/api/onboarding/tasks/{id}/move",
-            post(handlers::move_onboarding_task),
-        )
-        .route(
-            "/api/employees",
-            get(handlers::list_employees).post(handlers::create_employee),
-        )
-        .route(
-            "/api/employees/{id}",
-            get(handlers::get_employee)
-                .put(handlers::update_employee)
-                .delete(handlers::delete_employee),
-        )
-        .route(
-            "/api/departments",
-            get(handlers::list_departments).post(handlers::create_department),
-        )
-        .route(
-            "/api/departments/{id}",
-            get(handlers::get_department)
-                .put(handlers::update_department)
-                .delete(handlers::delete_department),
-        )
-        .route(
-            "/api/positions",
-            get(handlers::list_positions).post(handlers::create_position),
-        )
-        .route(
-            "/api/positions/{id}",
-            get(handlers::get_position)
-                .put(handlers::update_position)
-                .delete(handlers::delete_position),
-        )
-        .with_state(state.clone());
-
     let app = Router::new()
-        .merge(api_router)
-        .layer(CorsLayer::permissive());
+        .merge(routes::build_api_router(state.clone()))
+        .layer(from_fn(middleware::v2_contract::v2_contract_middleware))
+        .layer(middleware::security::SecurityHeadersLayer::new())
+        .layer(middleware::rate_limit::RateLimitLayer::new(
+            5,
+            std::time::Duration::from_secs(60),
+        ))
+        .layer(cors::cors_layer_from_env());
 
     if state.has_built_frontend() {
         let frontend_dist_dir = state.frontend_dist_dir.as_ref().clone();

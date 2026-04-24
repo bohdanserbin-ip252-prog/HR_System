@@ -1,4 +1,5 @@
-import { API, fetchJSON as rawFetchJSON } from './api.js';
+import { fetchJSON as rawFetchJSON } from './api.js';
+import { ENDPOINTS } from './app/endpoints.js';
 
 const cache = {};
 const pendingRequests = {};
@@ -67,7 +68,7 @@ export function getBadgeCountsFromStats(stats) {
 }
 
 export async function loadStats(options = {}) {
-    return fetchRuntimeCached(`${API}/api/stats`, 'stats', options);
+    return fetchRuntimeCached(ENDPOINTS.stats, 'stats', options);
 }
 
 export async function loadDashboardSnapshot(options = {}) {
@@ -75,7 +76,7 @@ export async function loadDashboardSnapshot(options = {}) {
 }
 
 export async function loadDevelopmentSnapshot(options = {}) {
-    const data = await fetchRuntimeCached(`${API}/api/development`, 'development', options);
+    const data = await fetchRuntimeCached(ENDPOINTS.development, 'development', options);
     return {
         goals: Array.isArray(data?.goals) ? data.goals : [],
         feedback: Array.isArray(data?.feedback) ? data.feedback : [],
@@ -84,7 +85,7 @@ export async function loadDevelopmentSnapshot(options = {}) {
 }
 
 export async function loadOnboardingSnapshot(options = {}) {
-    const data = await fetchRuntimeCached(`${API}/api/onboarding`, 'onboarding', options);
+    const data = await fetchRuntimeCached(ENDPOINTS.onboarding, 'onboarding', options);
     return {
         team: {
             avatars: Array.isArray(data?.team?.avatars) ? data.team.avatars : [],
@@ -97,5 +98,19 @@ export async function loadOnboardingSnapshot(options = {}) {
             completedCount: Number(data?.progress?.completedCount || 0),
             totalCount: Number(data?.progress?.totalCount || (Array.isArray(data?.tasks) ? data.tasks.length : 0))
         }
+    };
+}
+
+export async function loadComplaintsSnapshot(options = {}) {
+    const data = await fetchRuntimeCached(ENDPOINTS.complaints, 'complaints', options);
+    return {
+        complaints: Array.isArray(data) ? data : []
+    };
+}
+
+export async function loadActivityFeedSnapshot(options = {}) {
+    const data = await fetchRuntimeCached(ENDPOINTS.activity, 'activity', options);
+    return {
+        items: Array.isArray(data?.items) ? data.items : []
     };
 }

@@ -2,6 +2,7 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 const mockInvalidateRuntimeCache = vi.fn();
+const mockLoadComplaintsSnapshot = vi.fn();
 const mockLoadDashboardSnapshot = vi.fn();
 const mockLoadDevelopmentSnapshot = vi.fn();
 const mockLoadOnboardingSnapshot = vi.fn();
@@ -12,6 +13,7 @@ vi.mock('../appRuntime.js', async () => {
     return {
         ...actual,
         invalidateRuntimeCache: (...args) => mockInvalidateRuntimeCache(...args),
+        loadComplaintsSnapshot: (...args) => mockLoadComplaintsSnapshot(...args),
         loadDashboardSnapshot: (...args) => mockLoadDashboardSnapshot(...args),
         loadDevelopmentSnapshot: (...args) => mockLoadDevelopmentSnapshot(...args),
         loadOnboardingSnapshot: (...args) => mockLoadOnboardingSnapshot(...args),
@@ -121,6 +123,32 @@ describe('useAppDataController', () => {
         });
     });
 
+    it('loads complaints data into a ready snapshot', async () => {
+        const deps = createControllerDeps();
+        deps.currentUserRef.current = { id: 2, username: 'viewer', role: 'user' };
+        mockLoadComplaintsSnapshot.mockResolvedValueOnce({
+            complaints: [{ id: 7, title: 'Скарга', status: 'open' }]
+        });
+
+        const { result } = renderHook(() => useAppDataController(deps));
+
+        let payload;
+        await act(async () => {
+            payload = await result.current.loadPageData('complaints', 'complaints-check');
+        });
+
+        await waitFor(() => {
+            expect(result.current.complaintsSnapshot.status).toBe('ready');
+        });
+
+        expect(payload).toEqual({ complaints: [{ id: 7, title: 'Скарга', status: 'open' }] });
+        expect(mockLoadComplaintsSnapshot).toHaveBeenCalledWith({ onUnauthorized: deps.onUnauthorized });
+        expect(result.current.complaintsSnapshot.reason).toBe('complaints-check-success');
+        expect(result.current.complaintsSnapshot.data).toEqual({
+            complaints: [{ id: 7, title: 'Скарга', status: 'open' }]
+        });
+    });
+
     it('refreshes list state for employees and invalidates runtime cache', async () => {
         const deps = createControllerDeps();
         deps.currentUserRef.current = { id: 2, username: 'viewer', role: 'viewer' };
@@ -205,6 +233,13 @@ describe('useAppDataController', () => {
             errorMessage: '',
             reason: 'initial',
             revision: 0
+        });
+        expect(result.current.complaintsSnapshot).toMatchObject({
+            status: 'idle',
+            errorMessage: '',
+            reason: 'initial',
+            revision: 0,
+            data: { complaints: [] }
         });
         expect(mockInvalidateRuntimeCache).toHaveBeenCalledTimes(1);
     });

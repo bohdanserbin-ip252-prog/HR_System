@@ -2,6 +2,8 @@ import { useState } from 'react';
 import {
     getBadgeCountsFromStats,
     invalidateRuntimeCache,
+    loadActivityFeedSnapshot,
+    loadComplaintsSnapshot,
     loadDashboardSnapshot,
     loadDevelopmentSnapshot,
     loadOnboardingSnapshot,
@@ -9,8 +11,12 @@ import {
 } from '../appRuntime.js';
 import {
     DEFAULT_BADGE_COUNTS,
+    createActivityFeedData,
+    createActivityFeedSnapshot,
     createDashboardData,
     createDashboardSnapshot,
+    createComplaintsData,
+    createComplaintsSnapshot,
     createDevelopmentData,
     createDevelopmentSnapshot,
     createOnboardingData,
@@ -26,8 +32,10 @@ export function useAppDataController({ currentUserRef, currentPageRef, onUnautho
     const [profileEmployeeId, setProfileEmployeeId] = useState(null);
     const [profileRefreshKey, setProfileRefreshKey] = useState(0);
     const [dashboardSnapshot, setDashboardSnapshot] = useState(() => createDashboardSnapshot());
+    const [complaintsSnapshot, setComplaintsSnapshot] = useState(() => createComplaintsSnapshot());
     const [developmentSnapshot, setDevelopmentSnapshot] = useState(() => createDevelopmentSnapshot());
     const [onboardingSnapshot, setOnboardingSnapshot] = useState(() => createOnboardingSnapshot());
+    const [activitySnapshot, setActivitySnapshot] = useState(() => createActivityFeedSnapshot());
 
     function bumpRefresh(setRefreshKey) {
         setRefreshKey(key => key + 1);
@@ -67,12 +75,26 @@ export function useAppDataController({ currentUserRef, currentPageRef, onUnautho
             mapData: data => data,
             defaultErrorMessage: 'Помилка завантаження плану розвитку'
         },
+        complaints: {
+            setSnapshot: setComplaintsSnapshot,
+            createFallbackData: createComplaintsData,
+            load: () => loadComplaintsSnapshot({ onUnauthorized }),
+            mapData: data => data,
+            defaultErrorMessage: 'Помилка завантаження скарг'
+        },
         onboarding: {
             setSnapshot: setOnboardingSnapshot,
             createFallbackData: createOnboardingData,
             load: () => loadOnboardingSnapshot({ onUnauthorized }),
             mapData: data => data,
             defaultErrorMessage: 'Помилка завантаження адаптації'
+        },
+        activity: {
+            setSnapshot: setActivitySnapshot,
+            createFallbackData: createActivityFeedData,
+            load: () => loadActivityFeedSnapshot({ onUnauthorized }),
+            mapData: data => data,
+            defaultErrorMessage: 'Помилка завантаження стрічки активності'
         }
     };
 
@@ -149,8 +171,10 @@ export function useAppDataController({ currentUserRef, currentPageRef, onUnautho
 
         if (pageConfigs[page]) tasks.push(loadConfiguredPage(page, `refresh-${reason}`));
         if (page === 'employees') bumpEmployeesRefresh();
-        if (page === 'departments') bumpDepartmentsRefresh();
-        if (page === 'positions') bumpPositionsRefresh();
+        if (page === 'organization') {
+            bumpDepartmentsRefresh();
+            bumpPositionsRefresh();
+        }
         if (page === 'profile') bumpProfileRefresh();
 
         await Promise.all(tasks);
@@ -164,13 +188,17 @@ export function useAppDataController({ currentUserRef, currentPageRef, onUnautho
         setProfileEmployeeId(null);
         setProfileRefreshKey(0);
         setDashboardSnapshot(createDashboardSnapshot());
+        setComplaintsSnapshot(createComplaintsSnapshot());
         setDevelopmentSnapshot(createDevelopmentSnapshot());
         setOnboardingSnapshot(createOnboardingSnapshot());
+        setActivitySnapshot(createActivityFeedSnapshot());
         invalidateRuntimeCache();
     }
 
     return {
+        activitySnapshot,
         badgeCounts,
+        complaintsSnapshot,
         dashboardSnapshot,
         departmentsRefreshKey,
         developmentSnapshot,

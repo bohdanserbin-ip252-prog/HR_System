@@ -1,9 +1,12 @@
 import { useMemo } from 'react';
 import { useAppActions } from '../appContext.jsx';
 import { formatMoney, getErrorMessage } from '../uiUtils.js';
+import DashboardCharts from './dashboard/DashboardCharts.jsx';
+import NotificationCenter from './dashboard/NotificationCenter.jsx';
+import RiskPanel from './dashboard/RiskPanel.jsx';
 import PageStateBoundary from './PageStateBoundary.jsx';
 
-export default function DashboardPage({ isActive, snapshot }) {
+export default function DashboardPage({ currentUser, isActive, snapshot }) {
     const { navigateTo } = useAppActions();
 
     const viewModel = useMemo(() => {
@@ -11,7 +14,7 @@ export default function DashboardPage({ isActive, snapshot }) {
         const totalEmployees = Number(stats?.totalEmployees || 0);
         const totalDepartments = Number(stats?.totalDepartments || 0);
         const totalPositions = Number(stats?.totalPositions || 0);
-        const activeCount = Number(stats?.activeCount || totalEmployees || 0);
+        const activeCount = Number(stats?.activeCount ?? totalEmployees ?? 0);
         const onLeaveCount = Number(stats?.onLeaveCount || 0);
         const avgSalary = Number(stats?.avgSalary || 0);
         const pct = totalEmployees > 0 ? Math.round((activeCount / totalEmployees) * 100) : 0;
@@ -88,7 +91,6 @@ export default function DashboardPage({ isActive, snapshot }) {
         };
     }, [snapshot]);
 
-
     const isLoading = isActive && (snapshot.status === 'idle' || snapshot.status === 'loading') && !viewModel.hasStats;
 
     const content = (
@@ -110,95 +112,106 @@ export default function DashboardPage({ isActive, snapshot }) {
                     description: getErrorMessage({ message: snapshot.errorMessage }, 'Спробуйте оновити сторінку ще раз.')
                 } : null}
             >
-                <div className="dashboard-grid">
-                    <div className="dashboard-left">
-                        <div className="card card-padded hero-stat-card">
-                            <div className="card-top">
-                                <div>
-                                    <div className="label">Кадровий потенціал</div>
-                                    <div className="sublabel">Агрегований показник стану</div>
-                                </div>
-                                <div className="badge-stable">СТАБІЛЬНО</div>
-                            </div>
-                            <div className="hero-stat-value">
-                                <span className="big-num">{viewModel.totalEmployees}</span>
-                                <div className="context">
-                                    <span className="trend">
-                                        <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>trending_up</span>
-                                        {viewModel.totalDepartments} відділів
-                                    </span>
-                                    <span className="benchmark">{viewModel.totalPositions} посад в системі</span>
-                                </div>
-                            </div>
-                            <div className="hero-stat-metrics">
-                                <div className="metric">
-                                    <div className="metric-label">Активних</div>
-                                    <div className="metric-value">{viewModel.pct}%</div>
-                                </div>
-                                <div className="metric">
-                                    <div className="metric-label">Сер. зарплата</div>
-                                    <div className="metric-value">{formatMoney(viewModel.avgSalary)}₴</div>
-                                </div>
-                                <div className="metric">
-                                    <div className="metric-label">Топ відділ</div>
-                                    <div className="metric-value">{viewModel.topDeptShortName}</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="mini-stats-row">
-                            <div className="card mini-stat-card">
-                                <div className="mini-label">Бюджет на зарплати</div>
-                                <div className="mini-row">
-                                    <span className="mini-value">{formatMoney(viewModel.totalSalaryBudget)}₴</span>
-                                    <span className="mini-tag">Щомісяця</span>
-                                </div>
-                                <div className="progress-track"><div className="progress-fill" style={{ width: `${Math.min(viewModel.pct + 5, 100)}%` }}></div></div>
-                            </div>
-                            <div className="card mini-stat-card">
-                                <div className="mini-label">Топ зарплата (відділ)</div>
-                                <div className="mini-row">
-                                    <span className="mini-value">{formatMoney(viewModel.topDeptSalary?.avg_salary || 0)}₴</span>
-                                    <span className="mini-tag">{viewModel.topDeptSalary?.name || '—'}</span>
-                                </div>
-                                <div className="progress-track"><div className="progress-fill" style={{ width: `${Math.round(((viewModel.topDeptSalary?.avg_salary || 0) / viewModel.maxSalary) * 100)}%` }}></div></div>
-                            </div>
-                        </div>
-
-                        <div className="insight-card">
-                            <h3>Стратегічний інсайт</h3>
-                            <p>“{viewModel.insightText}”</p>
-                            <span className="material-symbols-outlined bg-icon">lightbulb</span>
-                        </div>
-                    </div>
-
-                    <div className="dashboard-right">
-                        <div className="card directives-panel">
-                            <h3>
-                                <span className="material-symbols-outlined">assignment_late</span>
-                                Оперативні завдання
-                            </h3>
-                            <div>
-                                {viewModel.directives.map(item => (
-                                    <div key={`${item.title}-${item.tag}`} className="directive">
-                                        <div className={`directive-icon ${item.cls}`}>
-                                            <span className="material-symbols-outlined">{item.icon}</span>
-                                        </div>
-                                        <div className="directive-body">
-                                            <h4>{item.title}</h4>
-                                            <p>{item.desc}</p>
-                                            <span className={`tag ${item.tagCls}`}>{item.tag}</span>
-                                        </div>
+                <div className="page-content dashboard-content">
+                    <div className="dashboard-grid">
+                        <div className="dashboard-left">
+                            <div className="card card-padded hero-stat-card">
+                                <div className="card-top">
+                                    <div>
+                                        <div className="label">Кадровий потенціал</div>
+                                        <div className="sublabel">Агрегований показник стану</div>
                                     </div>
-                                ))}
+                                    <div className="badge-stable">СТАБІЛЬНО</div>
+                                </div>
+                                <div className="hero-stat-value">
+                                    <span className="big-num">{viewModel.totalEmployees}</span>
+                                    <div className="context">
+                                        <span className="trend">
+                                            <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>trending_up</span>
+                                            {viewModel.totalDepartments} відділів
+                                        </span>
+                                        <span className="benchmark">{viewModel.totalPositions} посад в системі</span>
+                                    </div>
+                                </div>
+                                <div className="hero-stat-metrics">
+                                    <div className="metric">
+                                        <div className="metric-label">Активних</div>
+                                        <div className="metric-value">{viewModel.pct}%</div>
+                                    </div>
+                                    <div className="metric">
+                                        <div className="metric-label">Сер. зарплата</div>
+                                        <div className="metric-value">{formatMoney(viewModel.avgSalary)}₴</div>
+                                    </div>
+                                    <div className="metric">
+                                        <div className="metric-label">Топ відділ</div>
+                                        <div className="metric-value">{viewModel.topDeptShortName}</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div style={{ marginTop: '32px' }}>
-                                <button className="btn btn-outline btn-full" onClick={() => navigateTo('employees')} type="button">
-                                    Переглянути всі записи
-                                </button>
+
+                            <div className="mini-stats-row dashboard-kpi-grid">
+                                <div className="card mini-stat-card">
+                                    <div className="mini-label">Бюджет на зарплати</div>
+                                    <div className="mini-row">
+                                        <span className="mini-value">{formatMoney(viewModel.totalSalaryBudget)}₴</span>
+                                        <span className="mini-tag">Щомісяця</span>
+                                    </div>
+                                    <div className="progress-track"><div className="progress-fill" style={{ width: `${Math.min(viewModel.pct + 5, 100)}%` }}></div></div>
+                                </div>
+                                <div className="card mini-stat-card">
+                                    <div className="mini-label">Топ зарплата (відділ)</div>
+                                    <div className="mini-row">
+                                        <span className="mini-value">{formatMoney(viewModel.topDeptSalary?.avg_salary || 0)}₴</span>
+                                        <span className="mini-tag">{viewModel.topDeptSalary?.name || '—'}</span>
+                                    </div>
+                                    <div className="progress-track"><div className="progress-fill" style={{ width: `${Math.round(((viewModel.topDeptSalary?.avg_salary || 0) / viewModel.maxSalary) * 100)}%` }}></div></div>
+                                </div>
+                            </div>
+
+                            <div className="insight-card">
+                                <h3>Стратегічний інсайт</h3>
+                                <p>“{viewModel.insightText}”</p>
+                                <span className="material-symbols-outlined bg-icon">lightbulb</span>
+                            </div>
+                        </div>
+
+                        <div className="dashboard-right">
+                            <RiskPanel metrics={snapshot.data?.stats?.riskMetrics} />
+                            <NotificationCenter currentUser={currentUser} />
+                            <div className="card directives-panel">
+                                <h3>
+                                    <span className="material-symbols-outlined">assignment_late</span>
+                                    Оперативні завдання
+                                </h3>
+                                <div className="directives-list">
+                                    {viewModel.directives.map(item => {
+                                        return (
+                                        <div
+                                            key={`${item.title}-${item.tag}`}
+                                            className="directive"
+                                        >
+                                            <div className={`directive-icon ${item.cls}`}>
+                                                <span className="material-symbols-outlined">{item.icon}</span>
+                                            </div>
+                                            <div className="directive-body">
+                                                <h4>{item.title}</h4>
+                                                <p>{item.desc}</p>
+                                                <span className={`tag ${item.tagCls}`}>{item.tag}</span>
+                                            </div>
+                                        </div>
+                                        );
+                                    })}
+                                </div>
+                                <div style={{ marginTop: '32px' }}>
+                                    <button className="btn btn-outline btn-full" onClick={() => navigateTo('employees')} type="button">
+                                        Переглянути всі записи
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <DashboardCharts stats={snapshot.data?.stats} />
                 </div>
             </PageStateBoundary>
         </>

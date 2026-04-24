@@ -1,0 +1,196 @@
+@layer components {
+    .ob-bento,
+    .onboarding-content {
+        @apply grid gap-6;
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .ob-tasks {
+        @apply flex flex-col gap-3;
+    }
+
+    .ob-tasks-header {
+        @apply mb-1 flex items-center justify-between;
+    }
+
+    .ob-tasks-header h3 {
+        @apply font-headline text-xl font-bold;
+    }
+
+    .ob-task {
+        @apply flex items-center gap-4 rounded-xl border-l-4 border-l-transparent px-5 py-4;
+        transition:
+            background-color var(--motion-duration-base) var(--motion-ease-standard),
+            border-color var(--motion-duration-base) var(--motion-ease-standard),
+            box-shadow var(--motion-duration-base) var(--motion-ease-standard),
+            padding var(--motion-duration-base) var(--motion-ease-standard);
+    }
+
+    .ob-task:hover {
+        @apply bg-surface-container-high;
+    }
+
+    .ob-task.completed {
+        @apply border-l-emerald-600 bg-surface-container-low;
+    }
+
+    .ob-task.active {
+        @apply border-l-primary bg-surface-container-lowest px-6 py-5 shadow-sm;
+    }
+
+    .ob-task.active:hover {
+        @apply shadow-md;
+    }
+
+    .ob-task.pending {
+        @apply border-l-slate-200 bg-surface-container-lowest shadow-sm;
+    }
+
+    .ob-task-icon {
+        @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-full;
+    }
+
+    .ob-task.completed .ob-task-icon {
+        @apply bg-emerald-600 text-white;
+    }
+
+    .ob-task.active .ob-task-icon {
+        @apply h-12 w-12 rounded-xl bg-primary-container text-primary;
+    }
+
+    .ob-task.pending .ob-task-icon {
+        @apply bg-surface-container text-on-surface-variant;
+    }
+
+    .ob-task-body {
+        @apply flex-1;
+    }
+
+    .ob-task-body h4 {
+        @apply mb-0.5 font-headline text-sm font-bold;
+    }
+
+    .ob-task.completed .ob-task-body h4 {
+        @apply text-on-surface-variant opacity-60 line-through;
+    }
+
+    .ob-task.active .ob-task-body h4 {
+        @apply text-[15px] font-extrabold;
+    }
+
+    .ob-task-body p {
+        @apply text-[13px] text-on-surface-variant;
+    }
+
+    .ob-task-priority {
+        @apply ml-2 inline-block rounded px-2 py-0.5 align-middle text-[10px] font-bold text-on-secondary-container;
+        background: var(--secondary-container);
+    }
+
+    .ob-task-action {
+        @apply shrink-0 text-on-surface-variant;
+    }
+
+    .ob-task-action.btn {
+        @apply cursor-pointer rounded-md border-none bg-primary px-4 py-2 text-[13px] font-bold text-on-primary;
+    }
+
+    .ob-task-action.time-badge {
+        @apply rounded px-2.5 py-1 text-[11px] font-bold text-on-surface-variant;
+        background: var(--surface-container-low);
+    }
+
+    .ob-contextual {
+        @apply flex flex-col gap-5;
+    }
+
+    .ob-buddy-card {
+        @apply relative overflow-hidden rounded-2xl bg-emerald-900 p-6 text-white;
+        box-shadow: 0 12px 32px rgba(0, 105, 68, 0.3);
+    }
+
+    .ob-buddy-glow {
+        @apply absolute right-[-20px] top-[-20px] h-[100px] w-[100px] rounded-full bg-primary opacity-20;
+        filter: blur(30px);
+    }
+
+    .ob-buddy-card h3 {
+        @apply mb-4 flex items-center gap-2 font-headline text-base font-bold;
+    }
+
+    .ob-buddy-info {
+        @apply mb-5 flex items-center gap-3.5;
+    }
+
+    .ob-buddy-avatar {
+        @apply flex h-14 w-14 items-center justify-center rounded-full border-2 border-primary-container font-headline text-xl font-extrabold text-white;
+    }
+
+    .ob-buddy-name {
+        @apply text-[15px] font-bold;
+    }
+
+    .ob-buddy-role {
+        @apply text-xs text-emerald-200;
+    }
+
+    .ob-buddy-btn {
+        @apply flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border-none bg-primary-container px-3 py-3 text-sm font-bold text-on-primary-container transition-colors;
+    }
+
+    .ob-buddy-btn:hover {
+        @apply bg-white;
+    }
+
+    .ob-quicklinks {
+        @apply rounded-2xl border-2 border-emerald-50 bg-white p-6;
+    }
+
+    .ob-quicklinks h3 {
+        @apply mb-3.5 font-headline text-[15px] font-bold;
+    }
+
+    .ob-quicklinks ul {
+        @apply list-none;
+    }
+
+    .ob-quicklinks li {
+        @apply flex cursor-pointer items-center gap-3 rounded-md p-2 text-[13px] font-medium transition-colors;
+    }
+
+    .ob-quicklinks li:hover {
+        @apply bg-slate-50;
+    }
+
+    .ob-quicklinks li:hover span:last-child {
+        @apply text-primary;
+    }
+
+    .ob-ql-icon {
+        @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-emerald-50 text-primary;
+    }
+
+    .ob-ql-icon .material-symbols-outlined {
+        @apply text-lg;
+    }
+
+    .ob-insight-card {
+        @apply rounded-2xl border-2 border-dashed border-[rgba(116,119,119,0.2)] bg-surface-container-low p-6 text-center;
+    }
+
+    .ob-insight-icon {
+        @apply mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-sm;
+    }
+
+    .ob-insight-icon .material-symbols-outlined {
+        @apply text-primary;
+    }
+
+    .ob-insight-title {
+        @apply mb-1 text-sm font-bold;
+    }
+
+    .ob-insight-desc {
+        @apply mb-1 text-xs text-on-surface-variant;
+    }
+}

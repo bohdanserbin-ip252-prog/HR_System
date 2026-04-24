@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
 
 import {
     CLOSED_CONFIRM_DELETE_STATE,
@@ -11,7 +12,14 @@ import {
     createOnboardingSnapshot,
     createPageSnapshot,
 } from '../appStateBuilders.js';
-import { getTodayInputValue, nextDisplayOrder } from '../developmentOnboardingFormUtils.js';
+import {
+    getTodayInputValue,
+    nextDisplayOrder,
+    parseFiniteNumberInput,
+    parseIntegerInput,
+    parseNonNegativeIntegerInput,
+} from '../developmentOnboardingFormUtils.js';
+import FormErrorMessage from '../components/FormErrorMessage.jsx';
 import { syncBodyModalClass } from '../modalDomUtils.js';
 import { showToast } from '../toast.js';
 
@@ -84,6 +92,20 @@ describe('shared runtime utils', () => {
             expect(nextDisplayOrder([])).toBe(1);
             expect(nextDisplayOrder(null)).toBe(1);
             expect(nextDisplayOrder([{ displayOrder: 2 }, { display_order: 5 }, { displayOrder: 4 }])).toBe(6);
+            expect(nextDisplayOrder([{ displayOrder: 'abc' }, { display_order: -2 }])).toBe(1);
+            expect(nextDisplayOrder([{ displayOrder: 2 }, { display_order: 'x' }, { displayOrder: 7 }])).toBe(8);
+        });
+
+        it('parses finite numeric form values without coercing invalid text to zero', () => {
+            expect(parseFiniteNumberInput('42.5')).toBe(42.5);
+            expect(parseFiniteNumberInput('', { emptyValue: 0 })).toBe(0);
+            expect(parseFiniteNumberInput('abc')).toBeNull();
+            expect(parseIntegerInput('7')).toBe(7);
+            expect(parseIntegerInput('', { emptyValue: 0 })).toBe(0);
+            expect(parseIntegerInput('7.5')).toBeNull();
+            expect(parseNonNegativeIntegerInput('0')).toBe(0);
+            expect(parseNonNegativeIntegerInput('', { emptyValue: undefined })).toBeUndefined();
+            expect(parseNonNegativeIntegerInput('-1')).toBeNull();
         });
     });
 
@@ -116,15 +138,41 @@ describe('shared runtime utils', () => {
             showToast('Зміни збережено', 'success');
             expect(container?.querySelectorAll('.toast')).toHaveLength(1);
             expect(container?.textContent).toContain('Зміни збережено');
-            expect(container?.querySelector('.toast.success')).not.toBeNull();
+            const toast = container?.querySelector('.toast.success');
+            expect(toast).not.toBeNull();
+            expect(toast).toHaveAttribute('role', 'status');
+            expect(toast).toHaveAttribute('aria-live', 'polite');
+            expect(toast).toHaveAttribute('aria-atomic', 'true');
 
             await vi.advanceTimersByTimeAsync(3000);
-            const toast = container?.querySelector('.toast');
-            expect(toast?.style.opacity).toBe('0');
-            expect(toast?.style.transform).toBe('translateX(100%)');
+            const fadingToast = container?.querySelector('.toast');
+            expect(fadingToast).toHaveClass('toast-exiting');
 
             await vi.advanceTimersByTimeAsync(300);
             expect(container?.querySelector('.toast')).toBeNull();
+        });
+
+        it('renders toast messages as text instead of HTML', () => {
+            document.body.innerHTML = '<div id="toastContainer"></div>';
+
+            showToast('<img src=x onerror="window.__toastInjected = true">Небезпечно', 'error');
+
+            const toast = document.body.querySelector('.toast');
+            expect(toast).not.toBeNull();
+            expect(toast).toHaveAttribute('role', 'alert');
+            expect(toast).toHaveAttribute('aria-live', 'assertive');
+            expect(toast).toHaveAttribute('aria-atomic', 'true');
+            expect(toast?.querySelector('img')).toBeNull();
+            expect(toast?.textContent).toContain('<img src=x onerror="window.__toastInjected = true">Небезпечно');
+        });
+    });
+
+    describe('FormErrorMessage', () => {
+        it('announces inline form errors as alerts', () => {
+            render(<FormErrorMessage id="field-error" message="Поле обов'язкове" />);
+
+            expect(screen.getByRole('alert')).toHaveAttribute('id', 'field-error');
+            expect(screen.getByRole('alert')).toHaveTextContent("Поле обов'язкове");
         });
     });
 });

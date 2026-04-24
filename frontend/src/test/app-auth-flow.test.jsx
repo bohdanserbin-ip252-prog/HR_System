@@ -30,6 +30,12 @@ vi.mock('../components/PositionsPage.jsx', () => ({ default: createStubComponent
 vi.mock('../components/DevelopmentPage.jsx', () => ({ default: createStubComponent('development-page') }));
 vi.mock('../components/OnboardingPage.jsx', () => ({ default: createStubComponent('onboarding-page') }));
 vi.mock('../components/ProfilePage.jsx', () => ({ default: createStubComponent('profile-page') }));
+vi.mock('../components/AuditLogTab.jsx', () => ({ default: createStubComponent('audit-log-page') }));
+vi.mock('../components/SettingsPage.jsx', () => ({ default: createStubComponent('settings-page') }));
+vi.mock('../components/FeatureFlagsPage.jsx', () => ({ default: createStubComponent('feature-flags-page') }));
+vi.mock('../components/RecruitmentPage.jsx', () => ({ default: createStubComponent('recruitment-page') }));
+vi.mock('../components/HelpDeskPage.jsx', () => ({ default: createStubComponent('help-desk-page') }));
+vi.mock('../components/SurveysPage.jsx', () => ({ default: createStubComponent('surveys-page') }));
 vi.mock('../components/ConfirmDeleteHost.jsx', () => ({ default: createStubComponent('confirm-delete-host') }));
 vi.mock('../components/EmployeeModalsHost.jsx', () => ({ default: createStubComponent('employee-modals-host') }));
 vi.mock('../components/OrganizationModalsHost.jsx', () => ({ default: createStubComponent('organization-modals-host') }));
@@ -128,18 +134,21 @@ describe('App auth flow', () => {
 
     it('bootstraps unauthenticated session, logs in successfully, and logs out back to the login screen', async () => {
         globalThis.fetch = vi.fn(async (url, options = {}) => {
-            if (url.endsWith('/api/auth/me')) {
+            if (url.endsWith('/api/v2/auth/me')) {
                 return createJsonResponse(401, { error: 'Unauthorized' });
             }
-            if (url.endsWith('/api/auth/login')) {
+            if (url.endsWith('/api/v2/auth/login')) {
                 const payload = JSON.parse(options.body);
                 expect(payload).toEqual({ username: 'admin', password: 'admin123' });
                 return createJsonResponse(200, {
                     user: { id: 1, username: 'admin', role: 'admin' }
                 });
             }
-            if (url.endsWith('/api/auth/logout')) {
+            if (url.endsWith('/api/v2/auth/logout')) {
                 return createJsonResponse(200, { ok: true });
+            }
+            if (url.endsWith('/api/v2/notifications/unread-count')) {
+                return createJsonResponse(200, { unread_count: 0 });
             }
             throw new Error(`Unexpected fetch: ${url}`);
         });
@@ -175,12 +184,15 @@ describe('App auth flow', () => {
 
     it('bootstraps an authenticated session into the shell', async () => {
         globalThis.fetch = vi.fn(async url => {
-            if (url.endsWith('/api/auth/me')) {
+            if (url.endsWith('/api/v2/auth/me')) {
                 return createJsonResponse(200, {
                     id: 2,
                     username: 'viewer',
                     role: 'viewer'
                 });
+            }
+            if (url.endsWith('/api/v2/notifications/unread-count')) {
+                return createJsonResponse(200, { unread_count: 0 });
             }
             throw new Error(`Unexpected fetch: ${url}`);
         });

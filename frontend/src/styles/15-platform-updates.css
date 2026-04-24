@@ -1,0 +1,80 @@
+.risk-panel,
+.notification-center {
+    margin-bottom: 16px;
+}
+
+.risk-panel__head,
+.notification-center__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.risk-panel__head h3,
+.notification-center__head h3 {
+    margin: 4px 0 0;
+    font-family: var(--font-headline);
+    font-size: 20px;
+}
+
+.risk-panel__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.risk-panel__grid div,
+.notification-center__item,
+.profile-complaint {
+    border: 1px solid rgba(31, 41, 55, 0.1);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.78);
+    padding: 12px;
+}
+
+.risk-panel__grid strong {
+    display: block;
+    font-size: 24px;
+}
+
+.risk-panel__grid span,
+.notification-center__item span,
+.notification-center__item small,
+.profile-complaint span,
+.profile-complaint p,
+.muted-text {
+    color: var(--on-surface-variant);
+    font-size: 13px;
+}
+
+.notification-center__list,
+.profile-complaints {
+    display: grid;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.notification-center__item strong,
+.notification-center__item span,
+.notification-center__item small {
+    display: block;
+}
+
+.profile-complaint p {
+    margin: 8px 0 0;
+    line-height: 1.45;
+}
+
+.header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+@media (max-width: 720px) {
+    .risk-panel__grid {
+        grid-template-columns: 1fr;
+    }
+}

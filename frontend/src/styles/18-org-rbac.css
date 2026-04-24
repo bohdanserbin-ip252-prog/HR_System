@@ -1,0 +1,119 @@
+.org-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 16px 0;
+}
+
+.org-node {
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgba(31, 41, 55, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(31, 41, 55, 0.05);
+    display: flex;
+    gap: 14px;
+    padding: 16px 20px;
+    position: relative;
+}
+
+.org-node__icon {
+    align-items: center;
+    background: rgba(31, 41, 55, 0.06);
+    border-radius: 50%;
+    display: flex;
+    flex-shrink: 0;
+    height: 44px;
+    justify-content: center;
+    width: 44px;
+}
+
+.org-node__icon .material-symbols-outlined {
+    color: var(--on-surface-variant);
+    font-size: 22px;
+}
+
+.org-node__content {
+    flex: 1;
+    min-width: 0;
+}
+
+.org-node__content h3 {
+    font-size: 15px;
+    margin: 0 0 4px;
+}
+
+.org-node__content p {
+    color: var(--on-surface-variant);
+    font-size: 13px;
+    margin: 0;
+}
+
+.org-members {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.org-member-chip {
+    background: rgba(31, 41, 55, 0.04);
+    border-radius: 999px;
+    font-size: 11px;
+    padding: 3px 10px;
+}
+
+.org-connector {
+    border-left: 2px solid rgba(31, 41, 55, 0.1);
+    height: 24px;
+    margin-left: 30px;
+}
+
+.rbac-matrix {
+    background: #fff;
+    border: 1px solid rgba(31, 41, 55, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(31, 41, 55, 0.05);
+    overflow-x: auto;
+    padding: 16px;
+}
+
+.rbac-matrix table {
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 600px;
+    width: 100%;
+}
+
+.rbac-matrix th,
+.rbac-matrix td {
+    border-bottom: 1px solid rgba(31, 41, 55, 0.08);
+    padding: 10px 12px;
+    text-align: left;
+}
+
+.rbac-matrix th {
+    color: var(--on-surface-variant);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.rbac-matrix td {
+    color: var(--on-surface);
+}
+
+.rbac-check {
+    color: var(--primary);
+    font-size: 18px;
+}
+
+@media (max-width: 720px) {
+    .kanban-board {
+        flex-direction: column;
+    }
+
+    .kanban-column {
+        width: 100%;
+    }
+}
