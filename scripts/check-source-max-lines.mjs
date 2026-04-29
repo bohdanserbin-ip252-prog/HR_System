@@ -4,7 +4,7 @@ import path from 'node:path';
 
 const ROOT = process.cwd();
 const TARGET_DIRS = ['backend/src', 'frontend/src'];
-const ALLOWED_EXTENSIONS = new Set(['.rs', '.js', '.jsx', '.css']);
+const ALLOWED_EXTENSIONS = new Set(['.rs', '.js', '.jsx', '.ts', '.tsx', '.css']);
 const MAX_LINES = 250;
 
 function walk(dirPath, output = []) {
