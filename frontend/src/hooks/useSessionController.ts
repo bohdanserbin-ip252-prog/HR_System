@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { fetchJSON } from '../api.ts';
 import { ENDPOINTS } from '../app/endpoints.ts';
+import { writeStoredCurrentPage } from '../navigation.ts';
 
 export function useSessionController({
     currentUserRef,
@@ -23,6 +24,7 @@ export function useSessionController({
     function resetSessionState(message = '') {
         currentUserRef.current = null;
         currentPageRef.current = 'dashboard';
+        writeStoredCurrentPage('dashboard');
         setCurrentUser(null);
         setCurrentPage('dashboard');
         setSidebarOpen(false);
@@ -52,15 +54,17 @@ export function useSessionController({
                 const user = await fetchJSON(ENDPOINTS.auth.me, { suppressAuthRedirect: true });
                 if (disposed) return;
 
+                const page = currentPageRef.current || 'dashboard';
                 currentUserRef.current = user;
-                currentPageRef.current = 'dashboard';
+                currentPageRef.current = page;
+                writeStoredCurrentPage(page);
                 setCurrentUser(user);
-                setCurrentPage('dashboard');
+                setCurrentPage(page);
                 setLoginError('');
                 setAuthStatus('authenticated');
                 await Promise.all([
                     refreshBadgeCounts(true),
-                    loadPageData('dashboard', 'bootstrap-session')
+                    loadPageData(page, 'bootstrap-session')
                 ]);
             } catch (_) {
                 if (disposed) return;
@@ -96,6 +100,7 @@ export function useSessionController({
 
             currentUserRef.current = data.user;
             currentPageRef.current = 'dashboard';
+            writeStoredCurrentPage('dashboard');
             setUsername(normalizedUsername);
             setPassword('');
             setCurrentUser(data.user);

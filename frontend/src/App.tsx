@@ -15,13 +15,15 @@ import { useAppActionsController } from './hooks/useAppActionsController.ts';
 import { useAppDataController } from './hooks/useAppDataController.ts';
 import { useDesktopNotificationController } from './hooks/useDesktopNotificationController.ts';
 import { useSessionController } from './hooks/useSessionController.ts';
+import { readStoredCurrentPage, writeStoredCurrentPage } from './navigation.ts';
 
 export default function App() {
+  const initialPageRef = useRef(readStoredCurrentPage());
   const currentUserRef = useRef(null);
-  const currentPageRef = useRef('dashboard');
+  const currentPageRef = useRef(initialPageRef.current);
   const unauthorizedHandlerRef = useRef(() => {});
 
-  const [currentPage, setCurrentPage] = useState('dashboard');
+  const [currentPage, setCurrentPage] = useState(initialPageRef.current);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [desktopNotificationsEnabled, setDesktopNotificationsEnabled] = useState(() =>
     getDesktopNotificationsPreference()
@@ -96,6 +98,7 @@ export default function App() {
 
   function navigateTo(page) {
     currentPageRef.current = page;
+    writeStoredCurrentPage(page);
     setCurrentPage(page);
     setSidebarOpen(false);
     void dataController.loadPageData(page, 'navigate');
@@ -105,6 +108,7 @@ export default function App() {
     dataController.setProfileEmployeeId(employeeId ?? null);
     dataController.bumpProfileRefresh();
     currentPageRef.current = 'profile';
+    writeStoredCurrentPage('profile');
     setCurrentPage('profile');
     setSidebarOpen(false);
   }

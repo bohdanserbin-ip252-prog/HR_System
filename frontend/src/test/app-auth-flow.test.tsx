@@ -126,6 +126,20 @@ describe('App auth flow', () => {
 
     beforeEach(() => {
         vi.clearAllMocks();
+        localStorage.clear();
+        vi.stubGlobal(
+            'matchMedia',
+            vi.fn().mockImplementation(query => ({
+                matches: false,
+                media: query,
+                onchange: null,
+                addEventListener: vi.fn(),
+                removeEventListener: vi.fn(),
+                addListener: vi.fn(),
+                removeListener: vi.fn(),
+                dispatchEvent: vi.fn()
+            }))
+        );
         dataController = createDataController();
         actionsController = createActionsController();
         mockUseAppDataController.mockImplementation(() => dataController);
@@ -239,5 +253,59 @@ describe('App auth flow', () => {
         expect(dataController.loadPageData).toHaveBeenCalledWith('dashboard', 'bootstrap-session');
         expect(screen.queryByRole('button', { name: /Додати працівника/ })).not.toBeInTheDocument();
         expect(screen.getByText('Користувач')).toBeInTheDocument();
+    });
+
+    it('restores the last active page when an authenticated session reloads', async () => {
+        localStorage.setItem('hr-system.currentPage', 'activity');
+
+        globalThis.fetch = vi.fn(async url => {
+            if (url.endsWith('/api/v2/auth/me')) {
+                return createJsonResponse(200, {
+                    id: 2,
+                    username: 'viewer',
+                    role: 'viewer'
+                });
+            }
+            if (url.endsWith('/api/v2/notifications/unread-count')) {
+                return createJsonResponse(200, { unread_count: 0 });
+            }
+            throw new Error(`Unexpected fetch: ${url}`);
+        });
+
+        render(<App />);
+
+        await waitFor(() => {
+            expect(screen.getByText('viewer')).toBeInTheDocument();
+        });
+
+        expect(dataController.loadPageData).toHaveBeenCalledWith('activity', 'bootstrap-session');
+        expect(document.querySelector('#page-activity')).toHaveClass('active');
+    });
+
+    it('stores the active page when the user navigates', async () => {
+        globalThis.fetch = vi.fn(async url => {
+            if (url.endsWith('/api/v2/auth/me')) {
+                return createJsonResponse(200, {
+                    id: 2,
+                    username: 'viewer',
+                    role: 'viewer'
+                });
+            }
+            if (url.endsWith('/api/v2/notifications/unread-count')) {
+                return createJsonResponse(200, { unread_count: 0 });
+            }
+            throw new Error(`Unexpected fetch: ${url}`);
+        });
+
+        render(<App />);
+
+        await waitFor(() => {
+            expect(screen.getByText('viewer')).toBeInTheDocument();
+        });
+
+        fireEvent.click(screen.getAllByRole('button', { name: 'Активність' })[0]);
+
+        expect(localStorage.getItem('hr-system.currentPage')).toBe('activity');
+        expect(dataController.loadPageData).toHaveBeenCalledWith('activity', 'navigate');
     });
 });
