@@ -42,6 +42,7 @@ vi.mock('../components/OrganizationModalsHost.tsx', () => ({ default: createStub
 vi.mock('../components/DevelopmentOnboardingModalsHost.tsx', () => ({ default: createStubComponent('development-onboarding-modals-host') }));
 
 import App from '../App.tsx';
+import { PAGE_ORDER } from '../navigation.ts';
 
 function createJsonResponse(status, payload) {
     return {
@@ -61,7 +62,7 @@ function createJsonResponse(status, payload) {
     };
 }
 
-function createDataController() {
+function createDataController({ profileEmployeeId = null } = {}) {
     return {
         badgeCounts: { employees: 6, departments: 4, positions: 4 },
         dashboardSnapshot: { status: 'ready', errorMessage: '', data: { stats: {} }, revision: 1, reason: 'test' },
@@ -70,7 +71,7 @@ function createDataController() {
         employeesRefreshKey: 0,
         departmentsRefreshKey: 0,
         positionsRefreshKey: 0,
-        profileEmployeeId: null,
+        profileEmployeeId,
         profileRefreshKey: 0,
         bumpDepartmentsRefresh: vi.fn(),
         bumpEmployeesRefresh: vi.fn(),
@@ -140,11 +141,32 @@ describe('App auth flow', () => {
                 dispatchEvent: vi.fn()
             }))
         );
-        dataController = createDataController();
         actionsController = createActionsController();
-        mockUseAppDataController.mockImplementation(() => dataController);
+        dataController = createDataController();
+        let didCreateDataController = false;
+        mockUseAppDataController.mockImplementation((options = {}) => {
+            if (!didCreateDataController) {
+                dataController = createDataController({
+                    profileEmployeeId: options.initialProfileEmployeeId ?? null
+                });
+                didCreateDataController = true;
+            }
+            return dataController;
+        });
         mockUseAppActionsController.mockImplementation(() => actionsController);
     });
+
+    function mockAuthenticatedSession(user = { id: 2, username: 'viewer', role: 'viewer' }) {
+        globalThis.fetch = vi.fn(async url => {
+            if (url.endsWith('/api/v2/auth/me')) {
+                return createJsonResponse(200, user);
+            }
+            if (url.endsWith('/api/v2/notifications/unread-count')) {
+                return createJsonResponse(200, { unread_count: 0 });
+            }
+            throw new Error(`Unexpected fetch: ${url}`);
+        });
+    }
 
     it('bootstraps unauthenticated session, logs in successfully, and logs out back to the login screen', async () => {
         globalThis.fetch = vi.fn(async (url, options = {}) => {
@@ -229,24 +251,12 @@ describe('App auth flow', () => {
     });
 
     it('bootstraps an authenticated session into the shell', async () => {
-        globalThis.fetch = vi.fn(async url => {
-            if (url.endsWith('/api/v2/auth/me')) {
-                return createJsonResponse(200, {
-                    id: 2,
-                    username: 'viewer',
-                    role: 'viewer'
-                });
-            }
-            if (url.endsWith('/api/v2/notifications/unread-count')) {
-                return createJsonResponse(200, { unread_count: 0 });
-            }
-            throw new Error(`Unexpected fetch: ${url}`);
-        });
+        mockAuthenticatedSession();
 
         render(<App />);
 
         await waitFor(() => {
-            expect(screen.getByText('viewer')).toBeInTheDocument();
+            expect(document.querySelector('#appContainer')).toHaveStyle({ display: 'block' });
         });
 
         expect(dataController.refreshBadgeCounts).toHaveBeenCalledWith(true);
@@ -257,25 +267,12 @@ describe('App auth flow', () => {
 
     it('restores the last active page when an authenticated session reloads', async () => {
         localStorage.setItem('hr-system.currentPage', 'activity');
-
-        globalThis.fetch = vi.fn(async url => {
-            if (url.endsWith('/api/v2/auth/me')) {
-                return createJsonResponse(200, {
-                    id: 2,
-                    username: 'viewer',
-                    role: 'viewer'
-                });
-            }
-            if (url.endsWith('/api/v2/notifications/unread-count')) {
-                return createJsonResponse(200, { unread_count: 0 });
-            }
-            throw new Error(`Unexpected fetch: ${url}`);
-        });
+        mockAuthenticatedSession();
 
         render(<App />);
 
         await waitFor(() => {
-            expect(screen.getByText('viewer')).toBeInTheDocument();
+            expect(document.querySelector('#appContainer')).toHaveStyle({ display: 'block' });
         });
 
         expect(dataController.loadPageData).toHaveBeenCalledWith('activity', 'bootstrap-session');
@@ -283,19 +280,7 @@ describe('App auth flow', () => {
     });
 
     it('stores the active page when the user navigates', async () => {
-        globalThis.fetch = vi.fn(async url => {
-            if (url.endsWith('/api/v2/auth/me')) {
-                return createJsonResponse(200, {
-                    id: 2,
-                    username: 'viewer',
-                    role: 'viewer'
-                });
-            }
-            if (url.endsWith('/api/v2/notifications/unread-count')) {
-                return createJsonResponse(200, { unread_count: 0 });
-            }
-            throw new Error(`Unexpected fetch: ${url}`);
-        });
+        mockAuthenticatedSession();
 
         render(<App />);
 
@@ -307,5 +292,39 @@ describe('App auth flow', () => {
 
         expect(localStorage.getItem('hr-system.currentPage')).toBe('activity');
         expect(dataController.loadPageData).toHaveBeenCalledWith('activity', 'navigate');
+    });
+
+    it.each(PAGE_ORDER)('restores the stored %s page after authenticated reload', async page => {
+        localStorage.setItem('hr-system.currentPage', page);
+        if (page === 'profile') {
+            localStorage.setItem('hr-system.profileEmployeeId', '42');
+        }
+        mockAuthenticatedSession();
+
+        render(<App />);
+
+        await waitFor(() => {
+            expect(document.querySelector('#appContainer')).toHaveStyle({ display: 'block' });
+        });
+
+        expect(document.querySelector(`#page-${page}`)).toHaveClass('active');
+        expect(dataController.loadPageData).toHaveBeenCalledWith(page, 'bootstrap-session');
+        if (page === 'profile') {
+            expect(dataController.profileEmployeeId).toBe(42);
+        }
+    });
+
+    it('falls back from a stale stored profile page when no employee id is available', async () => {
+        localStorage.setItem('hr-system.currentPage', 'profile');
+        mockAuthenticatedSession({ id: 2, username: 'viewer', role: 'viewer' });
+
+        render(<App />);
+
+        await waitFor(() => {
+            expect(document.querySelector('#appContainer')).toHaveStyle({ display: 'block' });
+        });
+
+        expect(document.querySelector('#page-dashboard')).toHaveClass('active');
+        expect(dataController.loadPageData).toHaveBeenCalledWith('dashboard', 'bootstrap-session');
     });
 });

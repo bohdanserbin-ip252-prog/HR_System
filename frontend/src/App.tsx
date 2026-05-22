@@ -15,15 +15,27 @@ import { useAppActionsController } from './hooks/useAppActionsController.ts';
 import { useAppDataController } from './hooks/useAppDataController.ts';
 import { useDesktopNotificationController } from './hooks/useDesktopNotificationController.ts';
 import { useSessionController } from './hooks/useSessionController.ts';
-import { readStoredCurrentPage, writeStoredCurrentPage } from './navigation.ts';
+import {
+  readStoredCurrentPage,
+  readStoredProfileEmployeeId,
+  writeStoredCurrentPage,
+  writeStoredProfileEmployeeId
+} from './navigation.ts';
+
+function getInitialNavigationState() {
+  const profileEmployeeId = readStoredProfileEmployeeId();
+  const storedPage = readStoredCurrentPage();
+  const currentPage = storedPage === 'profile' && profileEmployeeId === null ? 'dashboard' : storedPage;
+  return { currentPage, profileEmployeeId };
+}
 
 export default function App() {
-  const initialPageRef = useRef(readStoredCurrentPage());
+  const initialNavigationRef = useRef(getInitialNavigationState());
   const currentUserRef = useRef(null);
-  const currentPageRef = useRef(initialPageRef.current);
+  const currentPageRef = useRef(initialNavigationRef.current.currentPage);
   const unauthorizedHandlerRef = useRef(() => {});
 
-  const [currentPage, setCurrentPage] = useState(initialPageRef.current);
+  const [currentPage, setCurrentPage] = useState(initialNavigationRef.current.currentPage);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [desktopNotificationsEnabled, setDesktopNotificationsEnabled] = useState(() =>
     getDesktopNotificationsPreference()
@@ -46,6 +58,7 @@ export default function App() {
   const dataController = useAppDataController({
     currentUserRef,
     currentPageRef,
+    initialProfileEmployeeId: initialNavigationRef.current.profileEmployeeId,
     onUnauthorized: handleUnauthorized
   });
 
@@ -109,6 +122,7 @@ export default function App() {
     dataController.bumpProfileRefresh();
     currentPageRef.current = 'profile';
     writeStoredCurrentPage('profile');
+    writeStoredProfileEmployeeId(employeeId);
     setCurrentPage('profile');
     setSidebarOpen(false);
   }

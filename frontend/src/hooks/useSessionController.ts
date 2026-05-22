@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { fetchJSON } from '../api.ts';
 import { ENDPOINTS } from '../app/endpoints.ts';
-import { writeStoredCurrentPage } from '../navigation.ts';
+import { writeStoredCurrentPage, writeStoredProfileEmployeeId } from '../navigation.ts';
 
 export function useSessionController({
     currentUserRef,
@@ -25,6 +25,7 @@ export function useSessionController({
         currentUserRef.current = null;
         currentPageRef.current = 'dashboard';
         writeStoredCurrentPage('dashboard');
+        writeStoredProfileEmployeeId(null);
         setCurrentUser(null);
         setCurrentPage('dashboard');
         setSidebarOpen(false);
@@ -101,6 +102,7 @@ export function useSessionController({
             currentUserRef.current = data.user;
             currentPageRef.current = 'dashboard';
             writeStoredCurrentPage('dashboard');
+            writeStoredProfileEmployeeId(null);
             setUsername(normalizedUsername);
             setPassword('');
             setCurrentUser(data.user);

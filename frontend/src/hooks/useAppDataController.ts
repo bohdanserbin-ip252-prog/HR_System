@@ -24,12 +24,17 @@ import {
 } from '../appStateBuilders.ts';
 import { getErrorMessage } from '../uiUtils.ts';
 
-export function useAppDataController({ currentUserRef, currentPageRef, onUnauthorized }) {
+export function useAppDataController({
+    currentUserRef,
+    currentPageRef,
+    onUnauthorized,
+    initialProfileEmployeeId = null
+}) {
     const [badgeCounts, setBadgeCounts] = useState(DEFAULT_BADGE_COUNTS);
     const [employeesRefreshKey, setEmployeesRefreshKey] = useState(0);
     const [departmentsRefreshKey, setDepartmentsRefreshKey] = useState(0);
     const [positionsRefreshKey, setPositionsRefreshKey] = useState(0);
-    const [profileEmployeeId, setProfileEmployeeId] = useState(null);
+    const [profileEmployeeId, setProfileEmployeeId] = useState(initialProfileEmployeeId);
     const [profileRefreshKey, setProfileRefreshKey] = useState(0);
     const [dashboardSnapshot, setDashboardSnapshot] = useState(() => createDashboardSnapshot());
     const [complaintsSnapshot, setComplaintsSnapshot] = useState(() => createComplaintsSnapshot());
